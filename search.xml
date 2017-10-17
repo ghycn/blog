@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Spring动态开启，关闭定时任务]]></title>
     <url>%2F2017%2F10%2F17%2Fspring-quartz%2F</url>
-    <content type="text"><![CDATA[Spring动态开启，关闭定时任务]]></content>
+    <content type="text"><![CDATA[Spring动态开启，关闭定时任务123456789101112131415161718192021222324252627282930313233343536373839@Autowiredprivate ThreadPoolTaskScheduler threadPoolTaskScheduler;public static ScheduledFuture&lt;?&gt; future = null;//开启定时任务public void startCron() &#123; String cron = ""; String hour= backupTime.split(":")[0]; String minute = backupTime.split(":")[1]; if("1".endsWith(period))&#123;//如果周期是月 //"0 15 10 15 * ?" 每月15日上午10:15触发 cron = "0 "+minute+" "+hour+" 1 * ?";//每月1号触发 &#125;else if("2".endsWith(period))&#123;//如果周期是周 //0 59 2 ? * FRI 每周5凌晨2点59分触发 cron = "0 "+minute+" "+hour+" ? * MON";//每周一触发 &#125;else if("3".endsWith(period))&#123;//如果周期是日 //"0 0 12 * * ?" 每天中午12点触发 cron = "0 "+minute+" "+hour+" * * ?";//每日触发 &#125; if (future != null) &#123; future.cancel(true); &#125; System.out.println("《==================定时开启时间："+cron); //cron="0/15 * * * * *"; future = threadPoolTaskScheduler.schedule(new InitUtil(dataBackupService,logService,0), new CronTrigger(cron)); logService.saveLog("开启数据库自动备份任务", Operation.DATA_BACKUP);&#125;//关闭定时任务 public void stopCron() &#123; if (future != null) &#123; future.cancel(true); &#125;&#125;]]></content>
       <categories>
         <category>Spring定时任务</category>
       </categories>
@@ -34,17 +34,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Mac下多版本JDK配置]]></title>
-    <url>%2F2017%2F10%2F15%2Fmac-jdk%2F</url>
-    <content type="text"><![CDATA[摘要 Mac下多版本JDK配置，动态切换JDK版本。 一.下载1链接:http://pan.baidu.com/s/1dFjcdrV 密码:mmt3 二.安装12JDK默认安装路径为/Library/Java/JavaVirtualMachines多版本安装后效果为 三.设置123456789101112131415161718192021221.执行以下命令 cd ~ open -e .bash_profile #打开.bash_profile文件 #注:假如.bash_profile文件不存在执行下面命令新建文件 cd ~ touch .bash_profile #新建.bash_profile文件 ls -a #查看文件是否创建成功 2.在打开的.bash_profile文件中添加下面内容然后关闭 #添加JDK的环境变量 export JAVA_7_HOME=/Library/Java/JavaVirtualMachines/ jdk1.7.0_79.jdk/Contents/Home export JAVA_8_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home #默认JDK1.7 export JAVA_HOME=$JAVA_7_HOME #alias命令动态切换JDK版本 alias jdk7="export JAVA_HOME=$JAVA_7_HOME" alias jdk8="export JAVA_HOME=$JAVA_8_HOME"3.设置生效 cd ~ source .bash_profile #设置配置立即生效 四.验证是否安装成功]]></content>
-      <categories>
-        <category>jdk</category>
-      </categories>
-      <tags>
-        <tag>Mac jdk</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Mysql 安装]]></title>
     <url>%2F2017%2F10%2F15%2Fmysql-install%2F</url>
     <content type="text"><![CDATA[摘要 yum方式安装Mysql 一.安装步骤123456789101112131415161718#在mysql官网下载mysql的repo源https://dev.mysql.com/downloads/repo/yum/#找到适合操作系统的repo源后下载wget https://repo.mysql.com//mysql57-community-release-el7-11.noarch.rpm#安装mysql57-community-release-el7-11.noarch.rpm包rpm -ivh mysql57-community-release-el7-11.noarch.rpm#ps:安装这个包后，会获得两个mysql的yum repo源/etc/yum.repos.d/mysql-community.repo/etc/yum.repos.d/mysql-community-source.repo#安装mysql（在线下载所需安装包）yum install mysql-server#启动mysqlservice mysqld start 二.获取随机密码Mysql安装完成后，自动生成一个随机密码，可以使用随机密码登录 12345678910#获取随机密码grep 'temporary password' /var/log/mysqld.log#命令运行后得到下面一句字符串，其中`s6OD/*I6(!hN`就是密码2017-09-11T03:10:07.036618Z 1 [Note] A temporary password is generated for root@localhost: s6OD/*I6(!hN#使用随机密码登录mysqlmysql -uroot -p#输入密码即可登录 三.修改Mysql密码1234567891011121314151617181920212223242526#修改mysql配置文件vim /etc/my.cnf#在 [mysqld] 小节下添加一行skip-grant-tables=1#这一行配置让 mysqld 启动时不对密码进行验证#重启 mysqld 服务service mysqld restart#使用 root 用户登录到 mysqlmysql -u root#修改密码update mysql.user set authentication_string=password('123456') where user='root';#Mysql默认有密码强度限制，不能设置简单密码mysql&gt; set global validate_password_policy=0;mysql&gt; set global validate_password_length=1;#去掉免密配置删除/etc/my.cnf 文件中的skip-grant-tables=1#重启mysql即可service mysqld restart 四.卸载mysql1yum -y remove mysql* 五.表名大小写设置mysql默认在linux环境下区分大小写，在windows环境不区分 1234567#用root登录，vim /etc/my.cnf#在[mysqld]节点下，加入一行lower_case_table_names=1#重启MySQL即可 六.允许远程访问设置12345678#允许所有地址访问GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY'mypassword' WITH GRANT OPTION; #如果是固定ip就这么写GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.1.1' IDENTIFIED BY 'mypassword' WITH GRANT OPTION; #使授权生效mysql&gt;FLUSH PRIVILEGES]]></content>
@@ -53,6 +42,17 @@
       </categories>
       <tags>
         <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Mac下多版本JDK配置]]></title>
+    <url>%2F2017%2F10%2F15%2Fmac-jdk%2F</url>
+    <content type="text"><![CDATA[摘要 Mac下多版本JDK配置，动态切换JDK版本。 一.下载1链接:http://pan.baidu.com/s/1dFjcdrV 密码:mmt3 二.安装12JDK默认安装路径为/Library/Java/JavaVirtualMachines多版本安装后效果为 三.设置123456789101112131415161718192021221.执行以下命令 cd ~ open -e .bash_profile #打开.bash_profile文件 #注:假如.bash_profile文件不存在执行下面命令新建文件 cd ~ touch .bash_profile #新建.bash_profile文件 ls -a #查看文件是否创建成功 2.在打开的.bash_profile文件中添加下面内容然后关闭 #添加JDK的环境变量 export JAVA_7_HOME=/Library/Java/JavaVirtualMachines/ jdk1.7.0_79.jdk/Contents/Home export JAVA_8_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home #默认JDK1.7 export JAVA_HOME=$JAVA_7_HOME #alias命令动态切换JDK版本 alias jdk7="export JAVA_HOME=$JAVA_7_HOME" alias jdk8="export JAVA_HOME=$JAVA_8_HOME"3.设置生效 cd ~ source .bash_profile #设置配置立即生效 四.验证是否安装成功]]></content>
+      <categories>
+        <category>jdk</category>
+      </categories>
+      <tags>
+        <tag>Mac jdk</tag>
       </tags>
   </entry>
   <entry>
@@ -67,17 +67,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Linux 常用命令]]></title>
-    <url>%2F2017%2F10%2F15%2Flinux%2F</url>
-    <content type="text"><![CDATA[摘要 Linux常用的基础命令，记录一下。 Linux命令网址：Linux命令大全 Linux常用命令12345678#给文件夹授权chmod -R 777 /home/data#给.sh后缀文件授权chmod u+x *.sh#Kill进程kill -s 9 xxxx java环境变量设置12345678910111213#编辑配置文件vim /etc/profile #添加以下内容export JAVA_HOME=/usr/local/java/jdk1.7.0_79export PATH=$JAVA_HOME/bin:$PATHexport CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar#配置文件生效source /etc/profile#查看环境变量配置是否成功java -version Tomcat命令12345#查看tomcat启动线程ps -ef | grep tomcat #查看tomcat日志 tail -f catalina.out 子目录中的文件移动到上一目录1mv 子目录/* ./ 解压命令1234567891011121314151617#解压 tar包tar -xvf file.tar #解压tar.gztar -xzvf file.tar.gz #解压 tar.bz2tar -xjvf file.tar.bz2 #解压tar.Ztar -xZvf file.tar.Z #解压rarunrar e file.rar #解压zipunzip file.zip]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[jsPlumb 基本概念]]></title>
     <url>%2F2017%2F10%2F15%2Fjsplumb%2F</url>
     <content type="text"><![CDATA[摘要 jsPlumb 可用于web流程图，数据库建模工具开发。官网地址 本文主要是jsPlumb 属性方法详解。 jsPlumb 基本概念一、默认属性 Anchor：锚点(连接点位置)，可以设置在任何没有锚点的目标上(endPoint) Anchors：设置在connect的源和目标点的连接点位置，默认是 BottomCenter Connector：连接线（比如：[&quot;Bezier&quot;, {curviness: 63}]为贝塞尔曲线） ConnectionsDetachable：是否在连接点可以用鼠标拖动[true/false] Container：容器 DoNotThrowErrors：设置当锚点(Anchor)、端点(endPoint)和连接器(Connector)不存在的时候是否抛出异常 ConnectionOverlays：默认覆盖附着在每个连接器 DragOptions：为 被 jsPlumb.draggable 设置了拖拽的元素拖拽时设置的css样式.eg:hoverClass: &quot;dropHover&quot;,//释放时指定鼠标停留在该元素上使用的css class; activeClass: &quot;dragActive&quot;//可拖动到的元素使用的css class Endpoint: 端点的形状定义，比如圆：[ &quot;Dot&quot;, { radius:5 } ]；正方形：Rectangle Endpoints：设置了连接器的源和目标端点的形状，eg圆： [ [ &quot;Dot&quot;, { radius:7 } ], [ &quot;Dot&quot;, { radius:11 } ] ] EndpointOverlays:默认覆盖附着在每个端点 EndpointStyle：端点的默认样式 EndpointStyles：设置了连接器的源和目标端点的样式 EndpointHoverStyle：端点的hover状态样式 EndpointHoverStyles ：设置了连接器的源和目标端点端点的hover状态样式 HoverPaintStyle ： LogEnabled：jsPlumb内部日志是否开启。 Overlays：默认覆盖连接器和端点样式，装饰连接器,如标签、箭头等 MaxConnections ：设置连接点最多可以连接几条线 PaintStyle ：设置连接点的样式 connectorStyle：设置连接线样式 ReattachConnections ： RenderMode ：默认渲染模式 Scope：连接点的标识符，只有标识符相同的连接点才能连接 二、锚点(Anchor)1 . 默认锚位置: Top (TopCenter) TopRight Right (RightMiddle) BottomRight Bottom (BottomCenter) BottomLeft Left (LeftMiddle) TopLeft Center eg： 12//定义了一个在底部中间的锚点位置jsPlumb.connect(&#123;...., anchor:"Bottom", ... &#125;); 2 . 基于数组的语法 [x,y,dx,dy] x-相对该锚点在x轴坐标比例（最大1） y-相对该锚点y轴坐标比例（最大1） dx-控制锚的方向 dy-同上 eg： 12//定义了一个在底部中间的锚点位置jsPlumb.connect(&#123;...., anchor:[ 0.5, 1, 0, 1 ], ... &#125;); 如果锚点位置无法满足你的需求，还可以设置锚点的偏移量[x,y,dx,dy,offSetX,offSetY] ,下面设置了Y轴偏移50px，锚点Y坐标会+50px: 1jsPlumb.connect(&#123;...., anchor:[ 0.5, 1, 0, 1, 0, 50 ], ... &#125;); 3 . 动态锚 数组定义 没有特殊的语法来创建一个动态锚;可以提供一个静态数组锚规格,如: 12var dynamicAnchors = [ [ 0.2, 0, 0, -1 ], [ 1, 0.2, 1, 0 ], [ 0.8, 1, 0, 1 ], [ 0, 0.8, -1, 0 ] ];jsPlumb.connect(&#123;...., anchor:dynamicAnchors, ... &#125;); 或者组合： 12var dynamicAnchors = [ [ 0.2, 0, 0, -1 ], [ 1, 0.2, 1, 0 ], "Top", "Bottom" ];jsPlumb.connect(&#123;...., anchor:dynamicAnchors, ... &#125;); 这样锚点会根据位置自动调整到最合适的位置(定义的数组里几个点中) 默认定义 jsPlumb提供了一个动态锚 AutoDefault 选择从 前 , 右 , 底 和 左 : 1jsPlumb.connect(&#123;...., anchor:"AutoDefault", ... &#125;); 4 . 多边形锚 Circle(圆) Ellipse(椭圆) Triangle(三角形) Diamond(菱形) Rectangle(矩形) Square(正方形) (1) 单个多边形eg： 1234jsPlumb.addEndpoint("someElement", &#123; endpoint:"Dot", anchor:[ "Perimeter", &#123; shape:"Circle" &#125; ]&#125;); 如果锚点的宽高一样，该锚点位置为动态圆周。宽高不同为椭圆，类似正方形和矩形。 默认情况下，锚点个数为60，我们还可以手动指定： eg（指定150个动态锚点）： 1234jsPlumb.addEndpoint("someDiv", &#123; endpoint:"Dot", anchor:[ "Perimeter", &#123; shape:"Square", anchorCount:150 &#125;]&#125;); (2) 组合锚点（三角形与菱形）：123456789jsPlumb.connect(&#123; source:"someDiv", target:"someOtherDiv", endpoint:"Dot", anchors:[ [ "Perimeter", &#123; shape:"Triangle" &#125; ], [ "Perimeter", &#123; shape:"Diamond" &#125; ] ]&#125;); (3) 自定义角度多边形锚点123456789jsPlumb.connect(&#123; source:"someDiv", target:"someOtherDiv", endpoint:"Dot", anchors:[ [ "Perimeter", &#123; shape:"Triangle", rotation:25 &#125; ], [ "Perimeter", &#123; shape:"Triangle", rotation:-335 &#125; ] ]&#125;); 上面定义了两个三角形旋转不同角度得到的组合图形（旋转适用带角度的多边形）。 5. CSS类和锚点(1)介绍锚点的不同位置可以有多种css样式，那就要有不同的css类提供支持。 被写入到锚点的CSS类和元素与jsPlumb实例相关联的前缀默认的前缀: 1jsplumb-endpoint-anchor- eg： 123var ep = jsPlumb.addEndpoint("someDiv", &#123; anchor:[0.5, 0, 0, -1, 0, 0, "top" ]&#125;; jsPlumb将会分配这个类给创建的 endpoint 和元素 someDiv： 1jsplumb-endpoint-anchor-top (2)示例一个使用动态锚的例子: 12345678var ep = jsPlumb.addEndpoint("someDiv", &#123; anchor:[ [ 0.5, 0, 0, -1, 0, 0, "top" ], [ 1, 0.5, 1, 0, 0, 0, "right" ] [ 0.5, 1, 0, 1, 0, 0, "bottom" ] [ 0, 0.5, -1, 0, 0, 0, "left" ] ]&#125;); 这里的类分配给端点和元素循环这些值作为锚位置的变化: 1234jsplumb-endpoint-anchor-topjsplumb-endpoint-anchor-rightjsplumb-endpoint-anchor-leftjsplumb-endpoint-anchor-bottom 如果您提供多个类名,jsPlumb不会预先考虑类中的每个词的前缀: 123var ep = jsPlumb.addEndpoint("someDiv", &#123; anchor:[ 0.5, 0, 0, -1, 0, 0, "foo bar" ]&#125;); 会导致2个类被添加到端点和元素: 1jsplumb-endpoint-anchor-foo 和 bar (3)改变锚类前缀前缀 endpointAnchorClass 用于锚类存储为jsPlumb的成员，这个前缀是可更改的: 1jsPlumb.endpointAnchorClass = "anchor_"; 或者 12var jp = jsPlumb.getInstance();jp.endpointAnchorClass = "anchor_"; 三、连接线(器)(Connectors)1. 简介jsPlumb提供了四种连接线： straight(直线) Bezier(贝塞尔曲线) flowchart(流程图) state machine straight在两个端点之间画一条直线。 它支持两个构造函数参数: stub：可选的,默认值为0。此参数的任何正值将导致在与连接线的两端产生一段不可改变方向的线段 gap：可选，默认为0像素。在连接线的一端和连接的元素之间指定一个间隙。 Bezier贝塞尔提供了一个立方的贝塞尔曲线。 它支持一个构造函数参数: curviness：参数可选,默认为150。 定义了曲线的弯曲程度。 flowchart垂直或水平的连接线，提供了四个参数： stub：这是最小长度，以像素为单位，最初的存根，源自一个端点。这是一个可选的参数，并且可以是一个整数，它指定了连接器的每个末端的存根，或是一个整数数组，指定[源目标]端点的连接。默认值为30像素的整数 alwaysRespectStubs ：可选，默认为false。 gap：可选，默认为0像素。在连接线的一端和连接的元素之间指定一个间隙。 midpoint：可选，默认为0.5。这是一个流程图中最长的部分将被绘制的2个元素之间的距离。 cornerRadius：默认为0。此参数的正值将改变弯角的度数。 state machine略微弯曲的线（实际上是二次Bezier曲线），类似于状态机的连接器，支持的构造函数参数： margin：可选；默认为5。定义连接线开始/结束的元素的距离。 curviness：可选的,默认为10，定义了曲线的弯曲程度。 proximityLimit ： 可选,默认为80。 连接线的两端之间的最小距离 它描绘为一条直线而非二次贝塞尔曲线。 四、端点(Endpoints)简介端点是连接里的一个端点外观和行为表现的集合，jsPlumb实现了四个端点： Dot(点) Rectangle(矩形) Blank(空) image(图像) 创建有不同的方式创建 endpoint： (1)connect并通过一个元素id或DOM元素作为源/目标,创建并分配一个新的端点 eg： 12345jpInstance.connect(&#123; source: "state1", target: "state2", scope: "state3"&#125;); (2)addEndpoint创建一个新的端点 1jpInstance.addEndpoint("myDivId", EndpointConfig) (3)makeSource()1jpInstance.makeSource(...) 类型(1)Dot就是在屏幕上画一个点，它支持三个构造函数参数: radius：可选，默认为10像素。 定义点的半径 cssClass ：可选，端点元素的CSS类。 hoverClass 可选的，元素或连线的hover属性样式类 (2)Rectangle绘制一个矩形。 支持构造函数参数有: width：可选的，默认为20像素。定义矩形的宽度。 height：可选的，默认为20像素。定义矩形的高。 cssClass ：可选的，端点元素的CSS类。 hoverClass ：可选的，元素或连线的hover属性样式类 (3)Image从一个指定的URL加载图像，这个端点支持三种构造函数参数: src：图片的url cssClass ：可选的，端点元素的CSS类。 hoverClass ：可选的，元素或连线的hover属性样式类 五、覆盖（连接元素）(Overlays)简介jsPlumb带有五个类型的覆盖图: Arrow(箭头) ：一个可配置的箭头，在某些点上涂上了一个可配置的箭头。你可以控制箭头的长度和宽度，“折返”点一点尾巴分折回来，和方向（允许值为1和1；1是默认的，意味着在连接点方向） Label(标签)：一个可配置的连线标签 PlainArrow(平原箭头)：没有监听的三角形箭头 Diamond(钻石)：钻石箭头 Custom(自定义)：可自定义DOM元素 位置位置表明连接元素在连接线的位置，通常有三种表明方式： [0 . . 1]范围内的十进制数，表明在连接线的位置比例，默认0.5 [1 . . . ] (&gt;1)的数字表明沿着连接线的绝对路径的像素 小于零的整数数组: (1):指定一个覆盖在端点的中心位置： 1location:[ 0.5, 0.5 ] (2):沿着x轴从左上角叠加5像素 1location: [ 5, 0 ] (3):沿着x轴从右下角叠加放置5像素 1location: [ -5, 0 ] 对于位置的操作，jsPlumb提供了两个方法： getLocation ——返回当前位置 setLocation ——设置当前位置 使用使用场景(出现以下调用的时候)： jsPlumb.connect jsPlumb.addEndpoint jsPlumb.makeSource 注： 没有 jsPlumb.makeTarget 1. 在 jsPlumb.connect 被调用时使用(1). 下面指定了 一个默认配置的箭头和一个文字为foo的标签文本： 12345678jsPlumb.connect(&#123; ... overlays:[ "Arrow", [ "Label", &#123; label:"foo", location:0.25, id:"myLabel" &#125; ] ], ...&#125;); 此连接的箭头在连接线的中间，lable标签则是在连接线的四分之一处；这里添加了一个id，它可以在以后移除或修改标签时使用。 (2). 箭头位置位于连接线距离50像素(绝对位置): 12345678jsPlumb.connect(&#123; ... overlays:[ "Arrow", [ "Label", &#123; label:"foo", location:50, id:"myLabel" &#125; ] ], ...&#125;); 2. 在 jsPlumb.addEndpoint 被调用时使用此连接将有10x30像素箭坐落在连接头，标签“foo”则位于中点。端点本身也有一个覆盖，位于[ - 0.5 宽，- 0.5 高]相对于端点的左上角。 1234567891011jsPlumb.addEndpoint("someDiv", &#123; ... overlays:[ [ "Label", &#123; label:"foo", id:"label", location:[-0.5, -0.5] &#125; ] ], connectorOverlays:[ [ "Arrow", &#123; width:10, length:30, location:1, id:"arrow" &#125; ], [ "Label", &#123; label:"foo", id:"label" &#125; ] ], ...&#125;); 注：在addEndpoint 使用 connectorOverlays 代替 overlays，因为 overlays指向端点覆盖。 3. 在 jsPlumb.makeSource同样使用 connectorOverlays，而且 makeSource 支持 endpoint 参数。此连接将有10x30像素箭坐落在连接头，标签“foo”位于中点。 12345678910jsPlumb.makeSource("someDiv", &#123; ... endpoint:&#123; connectorOverlays:[ [ "Arrow", &#123; width:10, length:30, location:1, id:"arrow" &#125; ], [ "Label", &#123; label:"foo", id:"label" &#125; ] ] &#125; ...&#125;); 4. addOverlay 方法Endpoints 和 Connections 都有一个方法： addOverlay，它提供一个单一的方法定义一个 覆盖(Overlays): 12var e = jsPlumb.addEndpoint("someElement");e.addOverlay([ "Arrow", &#123; width:10, height:10, id:"arrow" &#125;]); Overlay Types（覆盖类型）1. Arrow(箭头)一个箭头 使用四个点：头、两个尾点和一个foldback(监听)，它允许箭头的箭尾缩进。此覆盖的可用构造函数参数： width：宽度 length：长度 location：在连接线上的位置 direction：默认1-向前，-1向后 foldback：箭头沿轴到尾点的监听。默认是0.623 paintStyle：Endpoints 和 Connectors 的样式对象 2. PlainArrow（平原箭头）这其实就是一个 foldback=1 的 Arror；继承Arror的构造函数 3. Diamond（菱形）这其实就是一个 foldback=2 的 Arror；继承Arror的构造函数 4. Label（标签）(1) 介绍 提供装饰连接器的文本标签。可用的构造函数参数是： label : 文本显示。 您可以提供一个函数,而不是纯文本:连接作为一个参数传递,它应该返回一个字符串。 cssClass :可选的css类使用的标签。现在优先使用 labelStyle 参数。 labelStyle ： 可选参数标签的外观。 可用参数有： font ：一种适用于画布元素的字体字符串 fillStyle ：标签的背景颜色填充，可选。 color ：字体颜色，可选 padding ：表示标签的宽度的比例，而不是px和ems。 borderWidth ：标签的边框宽度，默认0 borderStyle ：标签边框的样式，可选 location ：标签位置 (2). getLabel 和 setLabel 标签覆盖提供了两个方法 getLabel 和 setLabel 用于动态地get/set标签内容: 1234567891011121314var c = jsPlumb.connect(&#123; source:"d1", target:"d2", overlays:[ [ "Label", &#123;label:"FOO", id:"label"&#125;] ] &#125;); ... var label = c.getOverlay("label");console.log("Label is currently", label.getLabel());label.setLabel("BAR");console.log("Label is now", label.getLabel()); 这个例子里，标签被赋予一个id ‘label’，然后检索这个id动态设置lable的值。 Connections 和Endpoints 都支持 标签覆盖： 1234567891011var conn = jsPlumb.connect(&#123; source:"d1", target:"d2", label:"FOO"&#125;); ... console.log("Label is currently", conn.getLabel());conn.setLabel("BAR");console.log("Label is now", conn.getLabel()); (3). 动态设置label 123456789101112var conn = jsPlumb.connect(&#123; source:"d1", target:"d2"&#125;); ... conn.setLabel(function(c) &#123; var s = new Date(); return s.getTime() + "milliseconds have elapsed since 01/01/1970";&#125;);console.log("Label is now", conn.getLabel()); og(“#### 5. Custom（自定义） jsPlumb允许自定义一个 OverLays，你只需要实现 create(component)： 1234567891011121314151617var conn = jsPlumb.connect(&#123; source:"d1", target:"d2", paintStyle:&#123; strokeStyle:"red", lineWidth:3 &#125;, overlays:[ ["Custom", &#123; create:function(component) &#123; return $("&lt;select id='myDropDown'&gt;&lt;option value='foo'&gt;foo&lt;/option&gt;&lt;option value='bar'&gt;bar&lt;/option&gt;&lt;/select&gt;"); &#125;, location:0.7, id:"customOverlay" &#125;] ]&#125;); 注意 此处的id为 customeOverlay ，你可以在 Connection 或者 Endpoint上使用 getOverlay(id) 方法。 隐藏/显示 Overlays（覆盖）可以使用 setVisible 方法控制 Overlays 的显示属性，或者在一个连接上使用 showOverlay(id) 和 hideOverlay(id)。 (1). 使用id： 1234567891011121314151617var connection = jsPlumb.connect(&#123; ... overlays:[ "Arrow", [ "Label", &#123; label:"foo", location:0.25, id:"myLabel" &#125; ] ], ... &#125;); // time passes var overlay = connection.getOverlay("myLabel"); // now you can hide this Overlay: overlay.setVisible(false); // there are also hide/show methods: overlay.show(); overlay.hide(); (2). 使用 showOverlay(id) 和 hideOverlay(id)： Connection 和 Endpoint 可以使用showOverlay(id) 和 hideOverlay(id)： 12345678910111213141516var connection = jsPlumb.connect(&#123; ... overlays:[ "Arrow", [ "Label", &#123; label:"foo", location:-30 , id:"myLabel" &#125;] ], ...&#125;); // time passes connection.hideOverlay("myLabel"); // more time passes connection.showOverlay("myLabel"); 删除 Overlays(覆盖)123456789101112var connection = jsPlumb.connect(&#123; ... overlays:[ "Arrow", [ "Label", &#123; label:"foo", location:0.25 , id:"myLabel"&#125; ] ], ...&#125;); // time passes connection.removeOverlay("myLabel");]]></content>
@@ -89,14 +78,35 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Elasticsearch5.X Centos7安装过程]]></title>
-    <url>%2F2017%2F10%2F15%2Fes-install%2F</url>
-    <content type="text"><![CDATA[摘要 Elasticsearch5.X Centos7安装过程。 下载地址：Elasticsearch-5.5.2.tar.gzElasticSearch 安装12345678910111213141516171819202122#Elasticsearch默认不推荐使用root用户启动，所以创建用户#创建用户elastic useradd elastic#设置密码 （回车后输入密码）passwd elastic#切到elastic用户目录下cd /home/elastic#下载Elasticsearch安装包wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.5.2.tar.gz#解压安装包tar -xzvf elasticsearch-5.5.2.tar.gz#给elastic用户设置文件读写权限chown -R elastic:elastic elasticsearch-5.5.2#切换到elastic用户，并启动elasticsearchsu elasticsh elasticsearch-5.5.2/bin/elasticsearch 启动测试123456789101112131415执行命令 curl http://localhost:9200/#得到以下结果则启动成功&#123; "name" : "_EArkv7", "cluster_name" : "elasticsearch", "cluster_uuid" : "q9gTAC0gTduDqxiV9JgE_g", "version" : &#123; "number" : "5.5.2", "build_hash" : "b2f0c09", "build_date" : "2017-08-14T12:33:14.154Z", "build_snapshot" : false, "lucene_version" : "6.6.0" &#125;, "tagline" : "You Know, for Search"&#125; 主机不能访问虚拟机9200端口编辑Elasticsearch config/elasticsearch.yml 配置文件。 如下图所示 启动过程可能遇到的错误123ERROR: bootstrap checks failed1.max file descriptors [4096] for elasticsearch process likely too low, increase to at least [65536]2.max virtual memory areas vm.max_map_count [65530] likely too low, increase to at least [262144] 1.问题一解决方法123456#切换到root用户，编辑limits.conf vi /etc/security/limits.conf#添加如下内容* hard nofile 65536* soft nofile 65536 2.问题二解决方法12345678910#切换到root用户修改配置sysctl.confvi /etc/sysctl.conf#添加下面配置：vm.max_map_count=655360#并执行命令：sysctl -p#重启Elasticsearch]]></content>
+    <title><![CDATA[Linux 常用命令]]></title>
+    <url>%2F2017%2F10%2F15%2Flinux%2F</url>
+    <content type="text"><![CDATA[摘要 Linux常用的基础命令，记录一下。 Linux命令网址：Linux命令大全 Linux常用命令12345678#给文件夹授权chmod -R 777 /home/data#给.sh后缀文件授权chmod u+x *.sh#Kill进程kill -s 9 xxxx java环境变量设置12345678910111213#编辑配置文件vim /etc/profile #添加以下内容export JAVA_HOME=/usr/local/java/jdk1.7.0_79export PATH=$JAVA_HOME/bin:$PATHexport CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar#配置文件生效source /etc/profile#查看环境变量配置是否成功java -version Tomcat命令12345#查看tomcat启动线程ps -ef | grep tomcat #查看tomcat日志 tail -f catalina.out 子目录中的文件移动到上一目录1mv 子目录/* ./ 解压命令1234567891011121314151617#解压 tar包tar -xvf file.tar #解压tar.gztar -xzvf file.tar.gz #解压 tar.bz2tar -xjvf file.tar.bz2 #解压tar.Ztar -xZvf file.tar.Z #解压rarunrar e file.rar #解压zipunzip file.zip]]></content>
       <categories>
-        <category>Elasticsearch</category>
+        <category>linux</category>
       </categories>
       <tags>
-        <tag>Elasticsearch</tag>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Docker 常用命令]]></title>
+    <url>%2F2017%2F10%2F15%2Fdocker%2F</url>
+    <content type="text"><![CDATA[摘要 Docker 常用命令简单记录。 Docker容器命令12345678910111213docker images 查看所有镜像列表docker ps 查看运行的容器docker ps -a 查看所有容器docker ps -l 查看上一个执行的容器docker start ID docker stop IDdocker exec -t -i 容器名称 /bin/bash ps:进入到容器内部命令docker logs 容器名称 查看容器日志 Docker主机文件复制到容器中12345docker inspect -f '&#123;&#123;.Id&#125;&#125;' 容器id或名称 ps:获取整个容器完整ID命令docker cp /root/software/demo-web.war 7726a9603a775f4b82e2c271c48d98505bcb2de3b4c53761b740485cc3c7db4a:/root/software/demo-web.warps:7726a..为容器的完整ID]]></content>
+      <categories>
+        <category>docker</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux防火墙设置]]></title>
+    <url>%2F2017%2F10%2F15%2Ffirewall-set%2F</url>
+    <content type="text"><![CDATA[摘要 CentOS7 CentOS6防火墙设置相关命令。 在CentOS7中，有很多CentOS 6中的常用服务发生了变化其中iptables是其中比较大的一个。防火墙iptables被firewalld取代 centOS 7关闭防火墙12345678#查看默认防火墙状态（关闭后显示notrunning，开启后显示running）firewall-cmd --state #停止firewallsystemctl stop firewalld.service #禁止firewall开机启动systemctl disable firewalld.service centOS 6关闭防火墙123456789101112131415#可以查看到iptables服务的当前状态service iptables status #关于启动和关闭防火墙的命令:1) 重启后生效开启： chkconfig iptables on关闭： chkconfig iptables off2) 即时生效，重启后失效开启： service iptables start****关闭： service iptables stop]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
         <tag>linux</tag>
       </tags>
   </entry>
@@ -112,13 +122,14 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Linux防火墙设置]]></title>
-    <url>%2F2017%2F10%2F15%2Ffirewall-set%2F</url>
-    <content type="text"><![CDATA[摘要 CentOS7 CentOS6防火墙设置相关命令。 在CentOS7中，有很多CentOS 6中的常用服务发生了变化其中iptables是其中比较大的一个。防火墙iptables被firewalld取代 centOS 7关闭防火墙12345678#查看默认防火墙状态（关闭后显示notrunning，开启后显示running）firewall-cmd --state #停止firewallsystemctl stop firewalld.service #禁止firewall开机启动systemctl disable firewalld.service centOS 6关闭防火墙123456789101112131415#可以查看到iptables服务的当前状态service iptables status #关于启动和关闭防火墙的命令:1) 重启后生效开启： chkconfig iptables on关闭： chkconfig iptables off2) 即时生效，重启后失效开启： service iptables start****关闭： service iptables stop]]></content>
+    <title><![CDATA[Elasticsearch5.X Centos7安装过程]]></title>
+    <url>%2F2017%2F10%2F15%2Fes-install%2F</url>
+    <content type="text"><![CDATA[摘要 Elasticsearch5.X Centos7安装过程。 下载地址：Elasticsearch-5.5.2.tar.gzElasticSearch 安装12345678910111213141516171819202122#Elasticsearch默认不推荐使用root用户启动，所以创建用户#创建用户elastic useradd elastic#设置密码 （回车后输入密码）passwd elastic#切到elastic用户目录下cd /home/elastic#下载Elasticsearch安装包wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.5.2.tar.gz#解压安装包tar -xzvf elasticsearch-5.5.2.tar.gz#给elastic用户设置文件读写权限chown -R elastic:elastic elasticsearch-5.5.2#切换到elastic用户，并启动elasticsearchsu elasticsh elasticsearch-5.5.2/bin/elasticsearch 启动测试123456789101112131415执行命令 curl http://localhost:9200/#得到以下结果则启动成功&#123; "name" : "_EArkv7", "cluster_name" : "elasticsearch", "cluster_uuid" : "q9gTAC0gTduDqxiV9JgE_g", "version" : &#123; "number" : "5.5.2", "build_hash" : "b2f0c09", "build_date" : "2017-08-14T12:33:14.154Z", "build_snapshot" : false, "lucene_version" : "6.6.0" &#125;, "tagline" : "You Know, for Search"&#125; 主机不能访问虚拟机9200端口编辑Elasticsearch config/elasticsearch.yml 配置文件。 如下图所示 启动过程可能遇到的错误123ERROR: bootstrap checks failed1.max file descriptors [4096] for elasticsearch process likely too low, increase to at least [65536]2.max virtual memory areas vm.max_map_count [65530] likely too low, increase to at least [262144] 1.问题一解决方法123456#切换到root用户，编辑limits.conf vi /etc/security/limits.conf#添加如下内容* hard nofile 65536* soft nofile 65536 2.问题二解决方法12345678910#切换到root用户修改配置sysctl.confvi /etc/sysctl.conf#添加下面配置：vm.max_map_count=655360#并执行命令：sysctl -p#重启Elasticsearch]]></content>
       <categories>
-        <category>linux</category>
+        <category>Elasticsearch</category>
       </categories>
       <tags>
+        <tag>Elasticsearch</tag>
         <tag>linux</tag>
       </tags>
   </entry>
@@ -132,17 +143,6 @@
       <tags>
         <tag>Elasticsearch</tag>
         <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Docker 常用命令]]></title>
-    <url>%2F2017%2F10%2F15%2Fdocker%2F</url>
-    <content type="text"><![CDATA[摘要 Docker 常用命令简单记录。 Docker容器命令12345678910111213docker images 查看所有镜像列表docker ps 查看运行的容器docker ps -a 查看所有容器docker ps -l 查看上一个执行的容器docker start ID docker stop IDdocker exec -t -i 容器名称 /bin/bash ps:进入到容器内部命令docker logs 容器名称 查看容器日志 Docker主机文件复制到容器中12345docker inspect -f '&#123;&#123;.Id&#125;&#125;' 容器id或名称 ps:获取整个容器完整ID命令docker cp /root/software/demo-web.war 7726a9603a775f4b82e2c271c48d98505bcb2de3b4c53761b740485cc3c7db4a:/root/software/demo-web.warps:7726a..为容器的完整ID]]></content>
-      <categories>
-        <category>docker</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
       </tags>
   </entry>
 </search>
