@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Spring动态开启，关闭定时任务]]></title>
     <url>%2F2017%2F10%2F17%2Fspring-quartz%2F</url>
-    <content type="text"><![CDATA[Spring动态开启，关闭定时任务123456789101112131415161718192021222324252627282930313233343536373839@Autowiredprivate ThreadPoolTaskScheduler threadPoolTaskScheduler;public static ScheduledFuture&lt;?&gt; future = null;//开启定时任务public void startCron() &#123; String cron = ""; String hour= backupTime.split(":")[0]; String minute = backupTime.split(":")[1]; if("1".endsWith(period))&#123;//如果周期是月 //"0 15 10 15 * ?" 每月15日上午10:15触发 cron = "0 "+minute+" "+hour+" 1 * ?";//每月1号触发 &#125;else if("2".endsWith(period))&#123;//如果周期是周 //0 59 2 ? * FRI 每周5凌晨2点59分触发 cron = "0 "+minute+" "+hour+" ? * MON";//每周一触发 &#125;else if("3".endsWith(period))&#123;//如果周期是日 //"0 0 12 * * ?" 每天中午12点触发 cron = "0 "+minute+" "+hour+" * * ?";//每日触发 &#125; if (future != null) &#123; future.cancel(true); &#125; System.out.println("《==================定时开启时间："+cron); //cron="0/15 * * * * *"; future = threadPoolTaskScheduler.schedule(new InitUtil(dataBackupService,logService,0), new CronTrigger(cron)); logService.saveLog("开启数据库自动备份任务", Operation.DATA_BACKUP);&#125;//关闭定时任务 public void stopCron() &#123; if (future != null) &#123; future.cancel(true); &#125;&#125;]]></content>
+    <content type="text"><![CDATA[Spring动态开启，关闭定时任务 123456789101112131415161718192021222324252627282930313233343536373839@Autowiredprivate ThreadPoolTaskScheduler threadPoolTaskScheduler;public static ScheduledFuture&lt;?&gt; future = null;//开启定时任务public void startCron() &#123; String cron = ""; String hour= backupTime.split(":")[0]; String minute = backupTime.split(":")[1]; if("1".endsWith(period))&#123;//如果周期是月 //"0 15 10 15 * ?" 每月15日上午10:15触发 cron = "0 "+minute+" "+hour+" 1 * ?";//每月1号触发 &#125;else if("2".endsWith(period))&#123;//如果周期是周 //0 59 2 ? * FRI 每周5凌晨2点59分触发 cron = "0 "+minute+" "+hour+" ? * MON";//每周一触发 &#125;else if("3".endsWith(period))&#123;//如果周期是日 //"0 0 12 * * ?" 每天中午12点触发 cron = "0 "+minute+" "+hour+" * * ?";//每日触发 &#125; if (future != null) &#123; future.cancel(true); &#125; System.out.println("《==================定时开启时间："+cron); //cron="0/15 * * * * *"; future = threadPoolTaskScheduler.schedule(new InitUtil(dataBackupService,logService,0), new CronTrigger(cron)); logService.saveLog("开启数据库自动备份任务", Operation.DATA_BACKUP);&#125;//关闭定时任务 public void stopCron() &#123; if (future != null) &#123; future.cancel(true); &#125;&#125;]]></content>
       <categories>
         <category>Spring定时任务</category>
       </categories>
@@ -23,6 +23,28 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[hexo 源文件备份]]></title>
+    <url>%2F2017%2F10%2F15%2Fhexo-source-backup%2F</url>
+    <content type="text"><![CDATA[摘要 hexo个人静态博客，源文件及主题备份，以防件丢失。 hexo 源文件备份12345678910111213141516171819201.进入到本地hexo博客文件夹所在位置cd /Library/Application/hexo2.将当前位置初始化为代码仓库git init3.设置远程仓库地址git remote add origin https://git.coding.net/ghycn/ghycn.coding.com.git4.创建hexo分支，用来存放源码git checkout -b hexo5.git 文件添加git add .6.git 提交git commit -m "init"7.push到hexo分支git push origin hexo]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo备份</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux 常用命令]]></title>
+    <url>%2F2017%2F10%2F15%2Flinux%2F</url>
+    <content type="text"><![CDATA[摘要 Linux常用的基础命令，记录一下。 Linux命令网址：Linux命令大全 Linux常用命令12345678#给文件夹授权chmod -R 777 /home/data#给.sh后缀文件授权chmod u+x *.sh#Kill进程kill -s 9 xxxx java环境变量设置12345678910111213#编辑配置文件vim /etc/profile #添加以下内容export JAVA_HOME=/usr/local/java/jdk1.7.0_79export PATH=$JAVA_HOME/bin:$PATHexport CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar#配置文件生效source /etc/profile#查看环境变量配置是否成功java -version Tomcat命令12345#查看tomcat启动线程ps -ef | grep tomcat #查看tomcat日志 tail -f catalina.out 子目录中的文件移动到上一目录1mv 子目录/* ./ 解压命令1234567891011121314151617#解压 tar包tar -xvf file.tar #解压tar.gztar -xzvf file.tar.gz #解压 tar.bz2tar -xjvf file.tar.bz2 #解压tar.Ztar -xZvf file.tar.Z #解压rarunrar e file.rar #解压zipunzip file.zip]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[IntelliJ IDEA完美激活]]></title>
     <url>%2F2017%2F10%2F15%2Fidea-register%2F</url>
     <content type="text"><![CDATA[摘要 IDEA 超级简单破解教程。 license service address :1http://idea.iteblog.com/key.php]]></content>
@@ -31,17 +53,6 @@
       </categories>
       <tags>
         <tag>IDEA 激活</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Mysql 安装]]></title>
-    <url>%2F2017%2F10%2F15%2Fmysql-install%2F</url>
-    <content type="text"><![CDATA[摘要 yum方式安装Mysql 一.安装步骤123456789101112131415161718#在mysql官网下载mysql的repo源https://dev.mysql.com/downloads/repo/yum/#找到适合操作系统的repo源后下载wget https://repo.mysql.com//mysql57-community-release-el7-11.noarch.rpm#安装mysql57-community-release-el7-11.noarch.rpm包rpm -ivh mysql57-community-release-el7-11.noarch.rpm#ps:安装这个包后，会获得两个mysql的yum repo源/etc/yum.repos.d/mysql-community.repo/etc/yum.repos.d/mysql-community-source.repo#安装mysql（在线下载所需安装包）yum install mysql-server#启动mysqlservice mysqld start 二.获取随机密码Mysql安装完成后，自动生成一个随机密码，可以使用随机密码登录 12345678910#获取随机密码grep 'temporary password' /var/log/mysqld.log#命令运行后得到下面一句字符串，其中`s6OD/*I6(!hN`就是密码2017-09-11T03:10:07.036618Z 1 [Note] A temporary password is generated for root@localhost: s6OD/*I6(!hN#使用随机密码登录mysqlmysql -uroot -p#输入密码即可登录 三.修改Mysql密码1234567891011121314151617181920212223242526#修改mysql配置文件vim /etc/my.cnf#在 [mysqld] 小节下添加一行skip-grant-tables=1#这一行配置让 mysqld 启动时不对密码进行验证#重启 mysqld 服务service mysqld restart#使用 root 用户登录到 mysqlmysql -u root#修改密码update mysql.user set authentication_string=password('123456') where user='root';#Mysql默认有密码强度限制，不能设置简单密码mysql&gt; set global validate_password_policy=0;mysql&gt; set global validate_password_length=1;#去掉免密配置删除/etc/my.cnf 文件中的skip-grant-tables=1#重启mysql即可service mysqld restart 四.卸载mysql1yum -y remove mysql* 五.表名大小写设置mysql默认在linux环境下区分大小写，在windows环境不区分 1234567#用root登录，vim /etc/my.cnf#在[mysqld]节点下，加入一行lower_case_table_names=1#重启MySQL即可 六.允许远程访问设置12345678#允许所有地址访问GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY'mypassword' WITH GRANT OPTION; #如果是固定ip就这么写GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.1.1' IDENTIFIED BY 'mypassword' WITH GRANT OPTION; #使授权生效mysql&gt;FLUSH PRIVILEGES]]></content>
-      <categories>
-        <category>mysql 安装</category>
-      </categories>
-      <tags>
-        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
@@ -56,14 +67,14 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[hexo 源文件备份]]></title>
-    <url>%2F2017%2F10%2F15%2Fhexo-source-backup%2F</url>
-    <content type="text"><![CDATA[摘要 hexo个人静态博客，源文件及主题备份，以防件丢失。 hexo 源文件备份12345678910111213141516171819201.进入到本地hexo博客文件夹所在位置cd /Library/Application/hexo2.将当前位置初始化为代码仓库git init3.设置远程仓库地址git remote add origin https://git.coding.net/ghycn/ghycn.coding.com.git4.创建hexo分支，用来存放源码git checkout -b hexo5.git 文件添加git add .6.git 提交git commit -m "init"7.push到hexo分支git push origin hexo]]></content>
+    <title><![CDATA[Mysql 安装]]></title>
+    <url>%2F2017%2F10%2F15%2Fmysql-install%2F</url>
+    <content type="text"><![CDATA[摘要 yum方式安装Mysql 一.安装步骤123456789101112131415161718#在mysql官网下载mysql的repo源https://dev.mysql.com/downloads/repo/yum/#找到适合操作系统的repo源后下载wget https://repo.mysql.com//mysql57-community-release-el7-11.noarch.rpm#安装mysql57-community-release-el7-11.noarch.rpm包rpm -ivh mysql57-community-release-el7-11.noarch.rpm#ps:安装这个包后，会获得两个mysql的yum repo源/etc/yum.repos.d/mysql-community.repo/etc/yum.repos.d/mysql-community-source.repo#安装mysql（在线下载所需安装包）yum install mysql-server#启动mysqlservice mysqld start 二.获取随机密码Mysql安装完成后，自动生成一个随机密码，可以使用随机密码登录 12345678910#获取随机密码grep 'temporary password' /var/log/mysqld.log#命令运行后得到下面一句字符串，其中`s6OD/*I6(!hN`就是密码2017-09-11T03:10:07.036618Z 1 [Note] A temporary password is generated for root@localhost: s6OD/*I6(!hN#使用随机密码登录mysqlmysql -uroot -p#输入密码即可登录 三.修改Mysql密码1234567891011121314151617181920212223242526#修改mysql配置文件vim /etc/my.cnf#在 [mysqld] 小节下添加一行skip-grant-tables=1#这一行配置让 mysqld 启动时不对密码进行验证#重启 mysqld 服务service mysqld restart#使用 root 用户登录到 mysqlmysql -u root#修改密码update mysql.user set authentication_string=password('123456') where user='root';#Mysql默认有密码强度限制，不能设置简单密码mysql&gt; set global validate_password_policy=0;mysql&gt; set global validate_password_length=1;#去掉免密配置删除/etc/my.cnf 文件中的skip-grant-tables=1#重启mysql即可service mysqld restart 四.卸载mysql1yum -y remove mysql* 五.表名大小写设置mysql默认在linux环境下区分大小写，在windows环境不区分 1234567#用root登录，vim /etc/my.cnf#在[mysqld]节点下，加入一行lower_case_table_names=1#重启MySQL即可 六.允许远程访问设置12345678#允许所有地址访问GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY'mypassword' WITH GRANT OPTION; #如果是固定ip就这么写GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.1.1' IDENTIFIED BY 'mypassword' WITH GRANT OPTION; #使授权生效mysql&gt;FLUSH PRIVILEGES]]></content>
       <categories>
-        <category>hexo</category>
+        <category>mysql 安装</category>
       </categories>
       <tags>
-        <tag>hexo备份</tag>
+        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
@@ -75,17 +86,6 @@
       </categories>
       <tags>
         <tag>jsPlumb</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Linux 常用命令]]></title>
-    <url>%2F2017%2F10%2F15%2Flinux%2F</url>
-    <content type="text"><![CDATA[摘要 Linux常用的基础命令，记录一下。 Linux命令网址：Linux命令大全 Linux常用命令12345678#给文件夹授权chmod -R 777 /home/data#给.sh后缀文件授权chmod u+x *.sh#Kill进程kill -s 9 xxxx java环境变量设置12345678910111213#编辑配置文件vim /etc/profile #添加以下内容export JAVA_HOME=/usr/local/java/jdk1.7.0_79export PATH=$JAVA_HOME/bin:$PATHexport CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar#配置文件生效source /etc/profile#查看环境变量配置是否成功java -version Tomcat命令12345#查看tomcat启动线程ps -ef | grep tomcat #查看tomcat日志 tail -f catalina.out 子目录中的文件移动到上一目录1mv 子目录/* ./ 解压命令1234567891011121314151617#解压 tar包tar -xvf file.tar #解压tar.gztar -xzvf file.tar.gz #解压 tar.bz2tar -xjvf file.tar.bz2 #解压tar.Ztar -xZvf file.tar.Z #解压rarunrar e file.rar #解压zipunzip file.zip]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
