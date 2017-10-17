@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Spring动态开启，关闭定时任务]]></title>
+    <url>%2F2017%2F10%2F17%2Fspring-quartz%2F</url>
+    <content type="text"><![CDATA[Spring动态开启，关闭定时任务]]></content>
+      <categories>
+        <category>Spring定时任务</category>
+      </categories>
+      <tags>
+        <tag>定时任务</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Oracle 建库语句]]></title>
     <url>%2F2017%2F10%2F15%2Foracle%2F</url>
     <content type="text"><![CDATA[摘要 Oracle 建库语句。 Oracle 建库共分为四步第1步：创建临时表空间123456create temporary tablespace user_temp tempfile 'D:\oracle\oradata\Oracle9i\user_temp.dbf' size 50m autoextend on next 50m maxsize 20480m extent management local; 第2步：创建数据表空间1234567create tablespace user_data logging datafile 'D:\oracle\oradata\Oracle9i\user_data.dbf' size 50m autoextend on next 50m maxsize 20480m extent management local; 第3步：创建用户并指定表空间123create user username identified by password default tablespace user_data temporary tablespace user_temp; 第4步：给用户授予权限1grant connect,resource,dba to username;]]></content>
@@ -23,6 +34,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Mac下多版本JDK配置]]></title>
+    <url>%2F2017%2F10%2F15%2Fmac-jdk%2F</url>
+    <content type="text"><![CDATA[摘要 Mac下多版本JDK配置，动态切换JDK版本。 一.下载1链接:http://pan.baidu.com/s/1dFjcdrV 密码:mmt3 二.安装12JDK默认安装路径为/Library/Java/JavaVirtualMachines多版本安装后效果为 三.设置123456789101112131415161718192021221.执行以下命令 cd ~ open -e .bash_profile #打开.bash_profile文件 #注:假如.bash_profile文件不存在执行下面命令新建文件 cd ~ touch .bash_profile #新建.bash_profile文件 ls -a #查看文件是否创建成功 2.在打开的.bash_profile文件中添加下面内容然后关闭 #添加JDK的环境变量 export JAVA_7_HOME=/Library/Java/JavaVirtualMachines/ jdk1.7.0_79.jdk/Contents/Home export JAVA_8_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home #默认JDK1.7 export JAVA_HOME=$JAVA_7_HOME #alias命令动态切换JDK版本 alias jdk7="export JAVA_HOME=$JAVA_7_HOME" alias jdk8="export JAVA_HOME=$JAVA_8_HOME"3.设置生效 cd ~ source .bash_profile #设置配置立即生效 四.验证是否安装成功]]></content>
+      <categories>
+        <category>jdk</category>
+      </categories>
+      <tags>
+        <tag>Mac jdk</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Mysql 安装]]></title>
     <url>%2F2017%2F10%2F15%2Fmysql-install%2F</url>
     <content type="text"><![CDATA[摘要 yum方式安装Mysql 一.安装步骤123456789101112131415161718#在mysql官网下载mysql的repo源https://dev.mysql.com/downloads/repo/yum/#找到适合操作系统的repo源后下载wget https://repo.mysql.com//mysql57-community-release-el7-11.noarch.rpm#安装mysql57-community-release-el7-11.noarch.rpm包rpm -ivh mysql57-community-release-el7-11.noarch.rpm#ps:安装这个包后，会获得两个mysql的yum repo源/etc/yum.repos.d/mysql-community.repo/etc/yum.repos.d/mysql-community-source.repo#安装mysql（在线下载所需安装包）yum install mysql-server#启动mysqlservice mysqld start 二.获取随机密码Mysql安装完成后，自动生成一个随机密码，可以使用随机密码登录 12345678910#获取随机密码grep 'temporary password' /var/log/mysqld.log#命令运行后得到下面一句字符串，其中`s6OD/*I6(!hN`就是密码2017-09-11T03:10:07.036618Z 1 [Note] A temporary password is generated for root@localhost: s6OD/*I6(!hN#使用随机密码登录mysqlmysql -uroot -p#输入密码即可登录 三.修改Mysql密码1234567891011121314151617181920212223242526#修改mysql配置文件vim /etc/my.cnf#在 [mysqld] 小节下添加一行skip-grant-tables=1#这一行配置让 mysqld 启动时不对密码进行验证#重启 mysqld 服务service mysqld restart#使用 root 用户登录到 mysqlmysql -u root#修改密码update mysql.user set authentication_string=password('123456') where user='root';#Mysql默认有密码强度限制，不能设置简单密码mysql&gt; set global validate_password_policy=0;mysql&gt; set global validate_password_length=1;#去掉免密配置删除/etc/my.cnf 文件中的skip-grant-tables=1#重启mysql即可service mysqld restart 四.卸载mysql1yum -y remove mysql* 五.表名大小写设置mysql默认在linux环境下区分大小写，在windows环境不区分 1234567#用root登录，vim /etc/my.cnf#在[mysqld]节点下，加入一行lower_case_table_names=1#重启MySQL即可 六.允许远程访问设置12345678#允许所有地址访问GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY'mypassword' WITH GRANT OPTION; #如果是固定ip就这么写GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.1.1' IDENTIFIED BY 'mypassword' WITH GRANT OPTION; #使授权生效mysql&gt;FLUSH PRIVILEGES]]></content>
@@ -31,17 +53,6 @@
       </categories>
       <tags>
         <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Linux 常用命令]]></title>
-    <url>%2F2017%2F10%2F15%2Flinux%2F</url>
-    <content type="text"><![CDATA[摘要 Linux常用的基础命令，记录一下。 Linux命令网址：Linux命令大全 Linux常用命令12345678#给文件夹授权chmod -R 777 /home/data#给.sh后缀文件授权chmod u+x *.sh#Kill进程kill -s 9 xxxx java环境变量设置12345678910111213#编辑配置文件vim /etc/profile #添加以下内容export JAVA_HOME=/usr/local/java/jdk1.7.0_79export PATH=$JAVA_HOME/bin:$PATHexport CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar#配置文件生效source /etc/profile#查看环境变量配置是否成功java -version Tomcat命令12345#查看tomcat启动线程ps -ef | grep tomcat #查看tomcat日志 tail -f catalina.out 子目录中的文件移动到上一目录1mv 子目录/* ./ 解压命令1234567891011121314151617#解压 tar包tar -xvf file.tar #解压tar.gztar -xzvf file.tar.gz #解压 tar.bz2tar -xjvf file.tar.bz2 #解压tar.Ztar -xZvf file.tar.Z #解压rarunrar e file.rar #解压zipunzip file.zip]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -56,14 +67,14 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Mac下多版本JDK配置]]></title>
-    <url>%2F2017%2F10%2F15%2Fmac-jdk%2F</url>
-    <content type="text"><![CDATA[摘要 Mac下多版本JDK配置，动态切换JDK版本。 一.下载1链接:http://pan.baidu.com/s/1dFjcdrV 密码:mmt3 二.安装12JDK默认安装路径为/Library/Java/JavaVirtualMachines多版本安装后效果为 三.设置123456789101112131415161718192021221.执行以下命令 cd ~ open -e .bash_profile #打开.bash_profile文件 #注:假如.bash_profile文件不存在执行下面命令新建文件 cd ~ touch .bash_profile #新建.bash_profile文件 ls -a #查看文件是否创建成功 2.在打开的.bash_profile文件中添加下面内容然后关闭 #添加JDK的环境变量 export JAVA_7_HOME=/Library/Java/JavaVirtualMachines/ jdk1.7.0_79.jdk/Contents/Home export JAVA_8_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home #默认JDK1.7 export JAVA_HOME=$JAVA_7_HOME #alias命令动态切换JDK版本 alias jdk7="export JAVA_HOME=$JAVA_7_HOME" alias jdk8="export JAVA_HOME=$JAVA_8_HOME"3.设置生效 cd ~ source .bash_profile #设置配置立即生效 四.验证是否安装成功]]></content>
+    <title><![CDATA[Linux 常用命令]]></title>
+    <url>%2F2017%2F10%2F15%2Flinux%2F</url>
+    <content type="text"><![CDATA[摘要 Linux常用的基础命令，记录一下。 Linux命令网址：Linux命令大全 Linux常用命令12345678#给文件夹授权chmod -R 777 /home/data#给.sh后缀文件授权chmod u+x *.sh#Kill进程kill -s 9 xxxx java环境变量设置12345678910111213#编辑配置文件vim /etc/profile #添加以下内容export JAVA_HOME=/usr/local/java/jdk1.7.0_79export PATH=$JAVA_HOME/bin:$PATHexport CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar#配置文件生效source /etc/profile#查看环境变量配置是否成功java -version Tomcat命令12345#查看tomcat启动线程ps -ef | grep tomcat #查看tomcat日志 tail -f catalina.out 子目录中的文件移动到上一目录1mv 子目录/* ./ 解压命令1234567891011121314151617#解压 tar包tar -xvf file.tar #解压tar.gztar -xzvf file.tar.gz #解压 tar.bz2tar -xjvf file.tar.bz2 #解压tar.Ztar -xZvf file.tar.Z #解压rarunrar e file.rar #解压zipunzip file.zip]]></content>
       <categories>
-        <category>jdk</category>
+        <category>linux</category>
       </categories>
       <tags>
-        <tag>Mac jdk</tag>
+        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -78,14 +89,15 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Docker 常用命令]]></title>
-    <url>%2F2017%2F10%2F15%2Fdocker%2F</url>
-    <content type="text"><![CDATA[摘要 Docker 常用命令简单记录。 Docker容器命令12345678910111213docker images 查看所有镜像列表docker ps 查看运行的容器docker ps -a 查看所有容器docker ps -l 查看上一个执行的容器docker start ID docker stop IDdocker exec -t -i 容器名称 /bin/bash ps:进入到容器内部命令docker logs 容器名称 查看容器日志 Docker主机文件复制到容器中12345docker inspect -f '&#123;&#123;.Id&#125;&#125;' 容器id或名称 ps:获取整个容器完整ID命令docker cp /root/software/demo-web.war 7726a9603a775f4b82e2c271c48d98505bcb2de3b4c53761b740485cc3c7db4a:/root/software/demo-web.warps:7726a..为容器的完整ID]]></content>
+    <title><![CDATA[Elasticsearch5.X Centos7安装过程]]></title>
+    <url>%2F2017%2F10%2F15%2Fes-install%2F</url>
+    <content type="text"><![CDATA[摘要 Elasticsearch5.X Centos7安装过程。 下载地址：Elasticsearch-5.5.2.tar.gzElasticSearch 安装12345678910111213141516171819202122#Elasticsearch默认不推荐使用root用户启动，所以创建用户#创建用户elastic useradd elastic#设置密码 （回车后输入密码）passwd elastic#切到elastic用户目录下cd /home/elastic#下载Elasticsearch安装包wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.5.2.tar.gz#解压安装包tar -xzvf elasticsearch-5.5.2.tar.gz#给elastic用户设置文件读写权限chown -R elastic:elastic elasticsearch-5.5.2#切换到elastic用户，并启动elasticsearchsu elasticsh elasticsearch-5.5.2/bin/elasticsearch 启动测试123456789101112131415执行命令 curl http://localhost:9200/#得到以下结果则启动成功&#123; "name" : "_EArkv7", "cluster_name" : "elasticsearch", "cluster_uuid" : "q9gTAC0gTduDqxiV9JgE_g", "version" : &#123; "number" : "5.5.2", "build_hash" : "b2f0c09", "build_date" : "2017-08-14T12:33:14.154Z", "build_snapshot" : false, "lucene_version" : "6.6.0" &#125;, "tagline" : "You Know, for Search"&#125; 主机不能访问虚拟机9200端口编辑Elasticsearch config/elasticsearch.yml 配置文件。 如下图所示 启动过程可能遇到的错误123ERROR: bootstrap checks failed1.max file descriptors [4096] for elasticsearch process likely too low, increase to at least [65536]2.max virtual memory areas vm.max_map_count [65530] likely too low, increase to at least [262144] 1.问题一解决方法123456#切换到root用户，编辑limits.conf vi /etc/security/limits.conf#添加如下内容* hard nofile 65536* soft nofile 65536 2.问题二解决方法12345678910#切换到root用户修改配置sysctl.confvi /etc/sysctl.conf#添加下面配置：vm.max_map_count=655360#并执行命令：sysctl -p#重启Elasticsearch]]></content>
       <categories>
-        <category>docker</category>
+        <category>Elasticsearch</category>
       </categories>
       <tags>
-        <tag>docker</tag>
+        <tag>Elasticsearch</tag>
+        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -123,15 +135,14 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Elasticsearch5.X Centos7安装过程]]></title>
-    <url>%2F2017%2F10%2F15%2Fes-install%2F</url>
-    <content type="text"><![CDATA[摘要 Elasticsearch5.X Centos7安装过程。 下载地址：Elasticsearch-5.5.2.tar.gzElasticSearch 安装12345678910111213141516171819202122#Elasticsearch默认不推荐使用root用户启动，所以创建用户#创建用户elastic useradd elastic#设置密码 （回车后输入密码）passwd elastic#切到elastic用户目录下cd /home/elastic#下载Elasticsearch安装包wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.5.2.tar.gz#解压安装包tar -xzvf elasticsearch-5.5.2.tar.gz#给elastic用户设置文件读写权限chown -R elastic:elastic elasticsearch-5.5.2#切换到elastic用户，并启动elasticsearchsu elasticsh elasticsearch-5.5.2/bin/elasticsearch 启动测试123456789101112131415执行命令 curl http://localhost:9200/#得到以下结果则启动成功&#123; "name" : "_EArkv7", "cluster_name" : "elasticsearch", "cluster_uuid" : "q9gTAC0gTduDqxiV9JgE_g", "version" : &#123; "number" : "5.5.2", "build_hash" : "b2f0c09", "build_date" : "2017-08-14T12:33:14.154Z", "build_snapshot" : false, "lucene_version" : "6.6.0" &#125;, "tagline" : "You Know, for Search"&#125; 主机不能访问虚拟机9200端口编辑Elasticsearch config/elasticsearch.yml 配置文件。 如下图所示 启动过程可能遇到的错误123ERROR: bootstrap checks failed1.max file descriptors [4096] for elasticsearch process likely too low, increase to at least [65536]2.max virtual memory areas vm.max_map_count [65530] likely too low, increase to at least [262144] 1.问题一解决方法123456#切换到root用户，编辑limits.conf vi /etc/security/limits.conf#添加如下内容* hard nofile 65536* soft nofile 65536 2.问题二解决方法12345678910#切换到root用户修改配置sysctl.confvi /etc/sysctl.conf#添加下面配置：vm.max_map_count=655360#并执行命令：sysctl -p#重启Elasticsearch]]></content>
+    <title><![CDATA[Docker 常用命令]]></title>
+    <url>%2F2017%2F10%2F15%2Fdocker%2F</url>
+    <content type="text"><![CDATA[摘要 Docker 常用命令简单记录。 Docker容器命令12345678910111213docker images 查看所有镜像列表docker ps 查看运行的容器docker ps -a 查看所有容器docker ps -l 查看上一个执行的容器docker start ID docker stop IDdocker exec -t -i 容器名称 /bin/bash ps:进入到容器内部命令docker logs 容器名称 查看容器日志 Docker主机文件复制到容器中12345docker inspect -f '&#123;&#123;.Id&#125;&#125;' 容器id或名称 ps:获取整个容器完整ID命令docker cp /root/software/demo-web.war 7726a9603a775f4b82e2c271c48d98505bcb2de3b4c53761b740485cc3c7db4a:/root/software/demo-web.warps:7726a..为容器的完整ID]]></content>
       <categories>
-        <category>Elasticsearch</category>
+        <category>docker</category>
       </categories>
       <tags>
-        <tag>Elasticsearch</tag>
-        <tag>linux</tag>
+        <tag>docker</tag>
       </tags>
   </entry>
 </search>
