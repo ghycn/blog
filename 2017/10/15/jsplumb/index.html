@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="jsPlumb," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="摘要 jsPlumb 可用于web流程图，数据库建模工具开发。官网地址 本文主要是jsPlumb 属性方法详解。">
+<meta name="keywords" content="jsPlumb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jsPlumb 基本概念">
+<meta property="og:url" content="http://www.gaohy.top/2017/10/15/jsplumb/index.html">
+<meta property="og:site_name" content="Mr、Gao个人小屋">
+<meta property="og:description" content="摘要 jsPlumb 可用于web流程图，数据库建模工具开发。官网地址 本文主要是jsPlumb 属性方法详解。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-10-15T07:33:25.784Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jsPlumb 基本概念">
+<meta name="twitter:description" content="摘要 jsPlumb 可用于web流程图，数据库建模工具开发。官网地址 本文主要是jsPlumb 属性方法详解。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.gaohy.top/2017/10/15/jsplumb/"/>
+
+
+
+
+
+  <title>jsPlumb 基本概念 | Mr、Gao个人小屋</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr、Gao个人小屋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">不积跬步无以至千里</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.gaohy.top/2017/10/15/jsplumb/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr、Gao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/IMG_0071.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr、Gao个人小屋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">jsPlumb 基本概念</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-15T15:33:25+08:00">
+                2017-10-15
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-10-15T15:33:25+08:00">
+                2017-10-15
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/jQuery插件-jsPlumb/" itemprop="url" rel="index">
+                    <span itemprop="name">jQuery插件-jsPlumb</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><ul>
+<li>jsPlumb 可用于web流程图，数据库建模工具开发。<a href="https://jsplumbtoolkit.com" target="_blank" rel="external">官网地址</a></li>
+<li>本文主要是jsPlumb 属性方法详解。</li>
+</ul>
+<a id="more"></a>
+<h1 id="jsPlumb-基本概念"><a href="#jsPlumb-基本概念" class="headerlink" title="jsPlumb 基本概念"></a>jsPlumb 基本概念</h1><h2 id="一、默认属性"><a href="#一、默认属性" class="headerlink" title="一、默认属性"></a>一、默认属性</h2><ul>
+<li><code>Anchor</code>：锚点(连接点位置)，可以设置在任何没有锚点的目标上(<code>endPoint</code>)</li>
+<li><code>Anchors</code>：设置在connect的源和目标点的连接点位置，默认是 <code>BottomCenter</code></li>
+<li><code>Connector</code>：连接线（比如：<code>[&quot;Bezier&quot;, {curviness: 63}]</code>为贝塞尔曲线）</li>
+<li><code>ConnectionsDetachable</code>：是否在连接点可以用鼠标拖动[<code>true/false</code>]</li>
+<li><code>Container</code>：容器</li>
+<li><code>DoNotThrowErrors</code>：设置当锚点(<code>Anchor</code>)、端点(<code>endPoint</code>)和连接器(<code>Connector</code>)不存在的时候是否抛出异常</li>
+<li><!-- more --></li>
+<li><code>ConnectionOverlays</code>：默认覆盖附着在每个连接器</li>
+<li><code>DragOptions</code>：为 被 <code>jsPlumb.draggable</code> 设置了拖拽的元素拖拽时设置的css样式.eg:<pre><code>hoverClass: &quot;dropHover&quot;,//释放时指定鼠标停留在该元素上使用的css class;
+activeClass: &quot;dragActive&quot;//可拖动到的元素使用的css class
+</code></pre></li>
+<li><code>Endpoint</code>: 端点的形状定义，比如圆：<code>[ &quot;Dot&quot;, { radius:5 } ]</code>；正方形：<code>Rectangle</code></li>
+<li><code>Endpoints</code>：设置了连接器的源和目标端点的形状，eg圆： <code>[ [ &quot;Dot&quot;, { radius:7 } ], [ &quot;Dot&quot;, { radius:11 } ] ]</code></li>
+<li><code>EndpointOverlays</code>:默认覆盖附着在每个端点</li>
+<li><code>EndpointStyle</code>：端点的默认样式</li>
+<li><code>EndpointStyles</code>：设置了连接器的源和目标端点的样式</li>
+<li><code>EndpointHoverStyle</code>：端点的hover状态样式</li>
+<li><code>EndpointHoverStyles</code> ：设置了连接器的源和目标端点端点的hover状态样式</li>
+<li><code>HoverPaintStyle</code> ：</li>
+<li><code>LogEnabled</code>：jsPlumb内部日志是否开启。</li>
+<li><code>Overlays</code>：默认覆盖连接器和端点样式，装饰连接器,如标签、箭头等</li>
+<li><code>MaxConnections</code> ：设置连接点最多可以连接几条线</li>
+<li><code>PaintStyle</code> ：设置连接点的样式</li>
+<li><code>connectorStyle</code>：设置连接线样式</li>
+<li><code>ReattachConnections</code> ：</li>
+<li><code>RenderMode</code> ：默认渲染模式</li>
+<li><code>Scope</code>：连接点的标识符，只有标识符相同的连接点才能连接</li>
+</ul>
+<h2 id="二、锚点-Anchor"><a href="#二、锚点-Anchor" class="headerlink" title="二、锚点(Anchor)"></a>二、锚点(Anchor)</h2><h3 id="1-默认锚位置"><a href="#1-默认锚位置" class="headerlink" title="1 . 默认锚位置:"></a>1 . 默认锚位置:</h3><ul>
+<li>Top (TopCenter)</li>
+<li>TopRight</li>
+<li>Right (RightMiddle)</li>
+<li>BottomRight</li>
+<li>Bottom (BottomCenter)</li>
+<li>BottomLeft</li>
+<li>Left (LeftMiddle)</li>
+<li>TopLeft</li>
+<li>Center</li>
+</ul>
+<p>eg：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//定义了一个在底部中间的锚点位置</span></div><div class="line">jsPlumb.connect(&#123;...., <span class="attr">anchor</span>:<span class="string">"Bottom"</span>, ... &#125;);</div></pre></td></tr></table></figure>
+<h3 id="2-基于数组的语法-x-y-dx-dy"><a href="#2-基于数组的语法-x-y-dx-dy" class="headerlink" title="2 . 基于数组的语法 [x,y,dx,dy]"></a>2 . 基于数组的语法 [x,y,dx,dy]</h3><ul>
+<li>x-相对该锚点在x轴坐标比例（最大1）</li>
+<li>y-相对该锚点y轴坐标比例（最大1）</li>
+<li>dx-控制锚的方向</li>
+<li>dy-同上</li>
+</ul>
+<p>eg：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//定义了一个在底部中间的锚点位置</span></div><div class="line">jsPlumb.connect(&#123;...., <span class="attr">anchor</span>:[ <span class="number">0.5</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span> ], ... &#125;);</div></pre></td></tr></table></figure>
+<p>如果锚点位置无法满足你的需求，还可以设置锚点的偏移量[x,y,dx,dy,offSetX,offSetY] ,下面设置了Y轴偏移50px，锚点Y坐标会+50px:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jsPlumb.connect(&#123;...., <span class="attr">anchor</span>:[ <span class="number">0.5</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">50</span> ], ... &#125;);</div></pre></td></tr></table></figure>
+<h3 id="3-动态锚"><a href="#3-动态锚" class="headerlink" title="3 . 动态锚"></a>3 . 动态锚</h3><ul>
+<li><p>数组定义</p>
+<p>  没有特殊的语法来创建一个动态锚;可以提供一个静态数组锚规格,如:</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> dynamicAnchors = [ [ <span class="number">0.2</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">-1</span> ],  [ <span class="number">1</span>, <span class="number">0.2</span>, <span class="number">1</span>, <span class="number">0</span> ], [ <span class="number">0.8</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span> ], [ <span class="number">0</span>, <span class="number">0.8</span>, <span class="number">-1</span>, <span class="number">0</span> ] ];</div><div class="line">jsPlumb.connect(&#123;...., <span class="attr">anchor</span>:dynamicAnchors, ... &#125;);</div></pre></td></tr></table></figure>
+<p>或者组合：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> dynamicAnchors = [ [ <span class="number">0.2</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">-1</span> ],  [ <span class="number">1</span>, <span class="number">0.2</span>, <span class="number">1</span>, <span class="number">0</span> ],  <span class="string">"Top"</span>, <span class="string">"Bottom"</span> ];</div><div class="line">jsPlumb.connect(&#123;...., <span class="attr">anchor</span>:dynamicAnchors, ... &#125;);</div></pre></td></tr></table></figure>
+<p>这样锚点会根据位置自动调整到最合适的位置(定义的数组里几个点中)</p>
+<ul>
+<li><p>默认定义</p>
+<p>  jsPlumb提供了一个动态锚 <code>AutoDefault</code> 选择从 前 , 右 , 底 和 左 :</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jsPlumb.connect(&#123;...., <span class="attr">anchor</span>:<span class="string">"AutoDefault"</span>, ... &#125;);</div></pre></td></tr></table></figure>
+<h3 id="4-多边形锚"><a href="#4-多边形锚" class="headerlink" title="4 . 多边形锚"></a>4 . 多边形锚</h3><ul>
+<li>Circle(圆)</li>
+<li>Ellipse(椭圆)</li>
+<li>Triangle(三角形)</li>
+<li>Diamond(菱形)</li>
+<li>Rectangle(矩形)</li>
+<li>Square(正方形)</li>
+</ul>
+<h4 id="1-单个多边形"><a href="#1-单个多边形" class="headerlink" title="(1) 单个多边形"></a>(1) 单个多边形</h4><p>eg：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">jsPlumb.addEndpoint(<span class="string">"someElement"</span>, &#123;</div><div class="line">    endpoint:<span class="string">"Dot"</span>,</div><div class="line">    anchor:[ <span class="string">"Perimeter"</span>, &#123; <span class="attr">shape</span>:<span class="string">"Circle"</span> &#125; ]</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>如果锚点的宽高一样，该锚点位置为动态圆周。宽高不同为椭圆，类似正方形和矩形。</p>
+<p>默认情况下，锚点个数为60，我们还可以手动指定：</p>
+<p>eg（指定150个动态锚点）：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">jsPlumb.addEndpoint(<span class="string">"someDiv"</span>, &#123;</div><div class="line">    endpoint:<span class="string">"Dot"</span>,</div><div class="line">    anchor:[ <span class="string">"Perimeter"</span>, &#123; <span class="attr">shape</span>:<span class="string">"Square"</span>, <span class="attr">anchorCount</span>:<span class="number">150</span> &#125;]</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h4 id="2-组合锚点（三角形与菱形）："><a href="#2-组合锚点（三角形与菱形）：" class="headerlink" title="(2) 组合锚点（三角形与菱形）："></a>(2) 组合锚点（三角形与菱形）：</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">jsPlumb.connect(&#123;</div><div class="line">    source:<span class="string">"someDiv"</span>,</div><div class="line">    target:<span class="string">"someOtherDiv"</span>,</div><div class="line">    endpoint:<span class="string">"Dot"</span>,</div><div class="line">    anchors:[</div><div class="line">        [ <span class="string">"Perimeter"</span>, &#123; <span class="attr">shape</span>:<span class="string">"Triangle"</span> &#125; ],</div><div class="line">        [ <span class="string">"Perimeter"</span>, &#123; <span class="attr">shape</span>:<span class="string">"Diamond"</span> &#125; ]</div><div class="line">    ]</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h4 id="3-自定义角度多边形锚点"><a href="#3-自定义角度多边形锚点" class="headerlink" title="(3) 自定义角度多边形锚点"></a>(3) 自定义角度多边形锚点</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">jsPlumb.connect(&#123;</div><div class="line">    source:<span class="string">"someDiv"</span>,</div><div class="line">    target:<span class="string">"someOtherDiv"</span>,</div><div class="line">    endpoint:<span class="string">"Dot"</span>,</div><div class="line">    anchors:[</div><div class="line">        [ <span class="string">"Perimeter"</span>, &#123; <span class="attr">shape</span>:<span class="string">"Triangle"</span>, <span class="attr">rotation</span>:<span class="number">25</span> &#125; ],</div><div class="line">        [ <span class="string">"Perimeter"</span>, &#123; <span class="attr">shape</span>:<span class="string">"Triangle"</span>, <span class="attr">rotation</span>:<span class="number">-335</span> &#125; ]</div><div class="line">    ]</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>上面定义了两个三角形旋转不同角度得到的组合图形（旋转适用带角度的多边形）。</p>
+<h3 id="5-CSS类和锚点"><a href="#5-CSS类和锚点" class="headerlink" title="5. CSS类和锚点"></a>5. CSS类和锚点</h3><h4 id="1-介绍"><a href="#1-介绍" class="headerlink" title="(1)介绍"></a>(1)介绍</h4><p>锚点的不同位置可以有多种css样式，那就要有不同的css类提供支持。</p>
+<p>被写入到锚点的CSS类和元素与jsPlumb实例相关联的前缀默认的前缀:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jsplumb-endpoint-anchor-</div></pre></td></tr></table></figure>
+<p>eg：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> ep = jsPlumb.addEndpoint(<span class="string">"someDiv"</span>, &#123;</div><div class="line">  anchor:[<span class="number">0.5</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="string">"top"</span> ]</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>jsPlumb将会分配这个类给创建的 <code>endpoint</code> 和元素 <code>someDiv</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jsplumb-endpoint-anchor-top</div></pre></td></tr></table></figure>
+<h4 id="2-示例"><a href="#2-示例" class="headerlink" title="(2)示例"></a>(2)示例</h4><p>一个使用动态锚的例子:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> ep = jsPlumb.addEndpoint(<span class="string">"someDiv"</span>, &#123;</div><div class="line">  anchor:[</div><div class="line">    [ <span class="number">0.5</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="string">"top"</span> ],</div><div class="line">    [ <span class="number">1</span>, <span class="number">0.5</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="string">"right"</span> ]</div><div class="line">    [ <span class="number">0.5</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="string">"bottom"</span> ]</div><div class="line">    [ <span class="number">0</span>, <span class="number">0.5</span>, <span class="number">-1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="string">"left"</span> ]</div><div class="line">  ]</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>这里的类分配给端点和元素循环这些值作为锚位置的变化:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">jsplumb-endpoint-anchor-top</div><div class="line">jsplumb-endpoint-anchor-right</div><div class="line">jsplumb-endpoint-anchor-left</div><div class="line">jsplumb-endpoint-anchor-bottom</div></pre></td></tr></table></figure>
+<p>如果您提供多个类名,jsPlumb不会预先考虑类中的每个词的前缀:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> ep = jsPlumb.addEndpoint(<span class="string">"someDiv"</span>, &#123;</div><div class="line">  anchor:[ <span class="number">0.5</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="string">"foo bar"</span> ]</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>会导致2个类被添加到端点和元素:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jsplumb-endpoint-anchor-foo 和 bar</div></pre></td></tr></table></figure>
+<h4 id="3-改变锚类前缀"><a href="#3-改变锚类前缀" class="headerlink" title="(3)改变锚类前缀"></a>(3)改变锚类前缀</h4><p>前缀 <code>endpointAnchorClass</code> 用于锚类存储为jsPlumb的成员，这个前缀是可更改的:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jsPlumb.endpointAnchorClass = <span class="string">"anchor_"</span>;</div></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> jp = jsPlumb.getInstance();</div><div class="line">jp.endpointAnchorClass = <span class="string">"anchor_"</span>;</div></pre></td></tr></table></figure>
+<h2 id="三、连接线-器-Connectors"><a href="#三、连接线-器-Connectors" class="headerlink" title="三、连接线(器)(Connectors)"></a>三、连接线(器)(Connectors)</h2><h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h3><p>jsPlumb提供了四种连接线：</p>
+<ul>
+<li><code>straight</code>(直线)</li>
+<li><code>Bezier</code>(贝塞尔曲线)</li>
+<li><code>flowchart</code>(流程图)</li>
+<li><code>state machine</code></li>
+</ul>
+<h3 id="straight"><a href="#straight" class="headerlink" title="straight"></a>straight</h3><p>在两个端点之间画一条直线。 它支持两个构造函数参数:</p>
+<ul>
+<li><code>stub</code>：可选的,默认值为0。此参数的任何正值将导致在与连接线的两端产生一段不可改变方向的线段</li>
+<li><code>gap</code>：可选，默认为0像素。在连接线的一端和连接的元素之间指定一个间隙。</li>
+</ul>
+<h3 id="Bezier"><a href="#Bezier" class="headerlink" title="Bezier"></a>Bezier</h3><p>贝塞尔提供了一个立方的贝塞尔曲线。 它支持一个构造函数参数:</p>
+<ul>
+<li><code>curviness</code>：参数可选,默认为150。 定义了曲线的弯曲程度。</li>
+</ul>
+<h3 id="flowchart"><a href="#flowchart" class="headerlink" title="flowchart"></a>flowchart</h3><p>垂直或水平的连接线，提供了四个参数：</p>
+<ul>
+<li><code>stub</code>：这是最小长度，以像素为单位，最初的存根，源自一个端点。这是一个可选的参数，并且可以是一个整数，它指定了连接器的每个末端的存根，或是一个整数数组，指定[源目标]端点的连接。默认值为30像素的整数 </li>
+<li><code>alwaysRespectStubs</code> ：可选，默认为false。</li>
+<li><code>gap</code>：可选，默认为0像素。在连接线的一端和连接的元素之间指定一个间隙。</li>
+<li><code>midpoint</code>：可选，默认为0.5。这是一个流程图中最长的部分将被绘制的2个元素之间的距离。</li>
+<li><code>cornerRadius</code>：默认为0。此参数的正值将改变弯角的度数。</li>
+</ul>
+<h3 id="state-machine"><a href="#state-machine" class="headerlink" title="state machine"></a>state machine</h3><p>略微弯曲的线（实际上是二次Bezier曲线），类似于状态机的连接器，支持的构造函数参数：</p>
+<ul>
+<li><code>margin</code>：可选；默认为5。定义连接线开始/结束的元素的距离。</li>
+<li><code>curviness</code>：可选的,默认为10，定义了曲线的弯曲程度。</li>
+<li><code>proximityLimit</code> ： 可选,默认为80。 连接线的两端之间的最小距离 它描绘为一条直线而非二次贝塞尔曲线。</li>
+</ul>
+<h2 id="四、端点-Endpoints"><a href="#四、端点-Endpoints" class="headerlink" title="四、端点(Endpoints)"></a>四、端点(Endpoints)</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>端点是连接里的一个端点外观和行为表现的集合，jsPlumb实现了四个端点：</p>
+<ul>
+<li>Dot(点)</li>
+<li>Rectangle(矩形)</li>
+<li>Blank(空)</li>
+<li>image(图像)</li>
+</ul>
+<h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><p>有不同的方式创建 <code>endpoint</code>：</p>
+<h4 id="1-connect"><a href="#1-connect" class="headerlink" title="(1)connect"></a>(1)connect</h4><p>并通过一个元素id或DOM元素作为源/目标,创建并分配一个新的端点</p>
+<p>eg：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">jpInstance.connect(&#123;</div><div class="line">    source: <span class="string">"state1"</span>,</div><div class="line">    target: <span class="string">"state2"</span>,</div><div class="line">    scope: <span class="string">"state3"</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h4 id="2-addEndpoint"><a href="#2-addEndpoint" class="headerlink" title="(2)addEndpoint"></a>(2)addEndpoint</h4><p>创建一个新的端点</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jpInstance.addEndpoint(<span class="string">"myDivId"</span>, EndpointConfig)</div></pre></td></tr></table></figure>
+<h4 id="3-makeSource"><a href="#3-makeSource" class="headerlink" title="(3)makeSource()"></a>(3)makeSource()</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jpInstance.makeSource(...)</div></pre></td></tr></table></figure>
+<h3 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h3><h4 id="1-Dot"><a href="#1-Dot" class="headerlink" title="(1)Dot"></a>(1)Dot</h4><p>就是在屏幕上画一个点，它支持三个构造函数参数:</p>
+<ul>
+<li><code>radius</code>：可选，默认为10像素。 定义点的半径</li>
+<li><code>cssClass</code> ：可选，端点元素的CSS类。 </li>
+<li><code>hoverClass</code> 可选的，元素或连线的hover属性样式类</li>
+</ul>
+<h4 id="2-Rectangle"><a href="#2-Rectangle" class="headerlink" title="(2)Rectangle"></a>(2)Rectangle</h4><p>绘制一个矩形。 支持构造函数参数有:</p>
+<ul>
+<li><code>width</code>：可选的，默认为20像素。定义矩形的宽度。</li>
+<li><code>height</code>：可选的，默认为20像素。定义矩形的高。</li>
+<li><code>cssClass</code> ：可选的，端点元素的CSS类。</li>
+<li><code>hoverClass</code> ：可选的，元素或连线的hover属性样式类</li>
+</ul>
+<h4 id="3-Image"><a href="#3-Image" class="headerlink" title="(3)Image"></a>(3)Image</h4><p>从一个指定的URL加载图像，这个端点支持三种构造函数参数:</p>
+<ul>
+<li><code>src</code>：图片的url</li>
+<li><code>cssClass</code> ：可选的，端点元素的CSS类。</li>
+<li><code>hoverClass</code> ：可选的，元素或连线的hover属性样式类</li>
+</ul>
+<h2 id="五、覆盖（连接元素）-Overlays"><a href="#五、覆盖（连接元素）-Overlays" class="headerlink" title="五、覆盖（连接元素）(Overlays)"></a>五、覆盖（连接元素）(Overlays)</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><p>jsPlumb带有五个类型的覆盖图:</p>
+<ul>
+<li>Arrow(箭头) ：一个可配置的箭头，在某些点上涂上了一个可配置的箭头。你可以控制箭头的长度和宽度，“折返”点一点尾巴分折回来，和方向（允许值为1和1；1是默认的，意味着在连接点方向）</li>
+<li>Label(标签)：一个可配置的连线标签</li>
+<li>PlainArrow(平原箭头)：没有监听的三角形箭头</li>
+<li>Diamond(钻石)：钻石箭头</li>
+<li>Custom(自定义)：可自定义DOM元素</li>
+</ul>
+<h3 id="位置"><a href="#位置" class="headerlink" title="位置"></a>位置</h3><p>位置表明连接元素在连接线的位置，通常有三种表明方式：</p>
+<ul>
+<li>[0 . . 1]范围内的十进制数，表明在连接线的位置比例，默认0.5</li>
+<li>[1 . . . ] (&gt;1)的数字表明沿着连接线的绝对路径的像素</li>
+<li>小于零的整数数组:<br>  (1):指定一个覆盖在端点的中心位置：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">location:[ <span class="number">0.5</span>, <span class="number">0.5</span> ]</div></pre></td></tr></table></figure>
+<pre><code>(2):沿着x轴从左上角叠加5像素
+</code></pre><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">location: [ <span class="number">5</span>, <span class="number">0</span> ]</div></pre></td></tr></table></figure>
+<pre><code>(3):沿着x轴从右下角叠加放置5像素
+</code></pre><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">location: [ <span class="number">-5</span>, <span class="number">0</span> ]</div></pre></td></tr></table></figure>
+<p>对于位置的操作，jsPlumb提供了两个方法：</p>
+<ul>
+<li>getLocation ——返回当前位置</li>
+<li>setLocation ——设置当前位置</li>
+</ul>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>使用场景(出现以下调用的时候)：</p>
+<ul>
+<li><code>jsPlumb.connect</code></li>
+<li><code>jsPlumb.addEndpoint</code></li>
+<li>jsPlumb.makeSource</li>
+</ul>
+<p>注： 没有 <code>jsPlumb.makeTarget</code></p>
+<h4 id="1-在-jsPlumb-connect-被调用时使用"><a href="#1-在-jsPlumb-connect-被调用时使用" class="headerlink" title="1. 在 jsPlumb.connect 被调用时使用"></a>1. 在 <code>jsPlumb.connect</code> 被调用时使用</h4><p>(1). 下面指定了 一个默认配置的箭头和一个文字为foo的标签文本：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">jsPlumb.connect(&#123;</div><div class="line">  ...</div><div class="line">  overlays:[ </div><div class="line">    <span class="string">"Arrow"</span>, </div><div class="line">      [ <span class="string">"Label"</span>, &#123; <span class="attr">label</span>:<span class="string">"foo"</span>, <span class="attr">location</span>:<span class="number">0.25</span>, <span class="attr">id</span>:<span class="string">"myLabel"</span> &#125; ]</div><div class="line">    ],</div><div class="line">  ...</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>此连接的箭头在连接线的中间，lable标签则是在连接线的四分之一处；这里添加了一个id，它可以在以后移除或修改标签时使用。</p>
+<p>(2). 箭头位置位于连接线距离50像素(绝对位置):</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">jsPlumb.connect(&#123;</div><div class="line">  ...</div><div class="line">  overlays:[ </div><div class="line">    <span class="string">"Arrow"</span>, </div><div class="line">      [ <span class="string">"Label"</span>, &#123; <span class="attr">label</span>:<span class="string">"foo"</span>, <span class="attr">location</span>:<span class="number">50</span>, <span class="attr">id</span>:<span class="string">"myLabel"</span> &#125; ]</div><div class="line">    ],</div><div class="line">    ...</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h4 id="2-在-jsPlumb-addEndpoint-被调用时使用"><a href="#2-在-jsPlumb-addEndpoint-被调用时使用" class="headerlink" title="2. 在 jsPlumb.addEndpoint 被调用时使用"></a>2. 在 <code>jsPlumb.addEndpoint</code> 被调用时使用</h4><p>此连接将有10x30像素箭坐落在连接头，标签“foo”则位于中点。端点本身也有一个覆盖，位于[ - 0.5 <em>宽，- 0.5 </em>高]相对于端点的左上角。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">jsPlumb.addEndpoint(<span class="string">"someDiv"</span>, &#123;</div><div class="line">  ...</div><div class="line">  overlays:[</div><div class="line">    [ <span class="string">"Label"</span>, &#123; <span class="attr">label</span>:<span class="string">"foo"</span>, <span class="attr">id</span>:<span class="string">"label"</span>, <span class="attr">location</span>:[<span class="number">-0.5</span>, <span class="number">-0.5</span>] &#125; ]</div><div class="line">  ],</div><div class="line">  connectorOverlays:[ </div><div class="line">    [ <span class="string">"Arrow"</span>, &#123; <span class="attr">width</span>:<span class="number">10</span>, <span class="attr">length</span>:<span class="number">30</span>, <span class="attr">location</span>:<span class="number">1</span>, <span class="attr">id</span>:<span class="string">"arrow"</span> &#125; ],</div><div class="line">    [ <span class="string">"Label"</span>, &#123; <span class="attr">label</span>:<span class="string">"foo"</span>, <span class="attr">id</span>:<span class="string">"label"</span> &#125; ]</div><div class="line">  ],</div><div class="line">  ...</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>注：在addEndpoint 使用 <code>connectorOverlays</code> 代替 <code>overlays</code>，因为 <code>overlays</code>指向端点覆盖。</p>
+<h4 id="3-在-jsPlumb-makeSource"><a href="#3-在-jsPlumb-makeSource" class="headerlink" title="3. 在 jsPlumb.makeSource"></a>3. 在 jsPlumb.makeSource</h4><p>同样使用 <code>connectorOverlays</code>，而且 <code>makeSource</code> 支持 <code>endpoint</code> 参数。<br>此连接将有10x30像素箭坐落在连接头，标签“foo”位于中点。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">jsPlumb.makeSource(<span class="string">"someDiv"</span>, &#123;</div><div class="line">  ...</div><div class="line">  endpoint:&#123;</div><div class="line">    connectorOverlays:[ </div><div class="line">      [ <span class="string">"Arrow"</span>, &#123; <span class="attr">width</span>:<span class="number">10</span>, <span class="attr">length</span>:<span class="number">30</span>, <span class="attr">location</span>:<span class="number">1</span>, <span class="attr">id</span>:<span class="string">"arrow"</span> &#125; ], </div><div class="line">      [ <span class="string">"Label"</span>, &#123; <span class="attr">label</span>:<span class="string">"foo"</span>, <span class="attr">id</span>:<span class="string">"label"</span> &#125; ]</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">  ...</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h4 id="4-addOverlay-方法"><a href="#4-addOverlay-方法" class="headerlink" title="4. addOverlay 方法"></a>4. <code>addOverlay</code> 方法</h4><p><code>Endpoints</code> 和 <code>Connections</code> 都有一个方法： <code>addOverlay</code>，它提供一个单一的方法定义一个 覆盖(Overlays):</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> e = jsPlumb.addEndpoint(<span class="string">"someElement"</span>);</div><div class="line">e.addOverlay([ <span class="string">"Arrow"</span>, &#123; <span class="attr">width</span>:<span class="number">10</span>, <span class="attr">height</span>:<span class="number">10</span>, <span class="attr">id</span>:<span class="string">"arrow"</span> &#125;]);</div></pre></td></tr></table></figure>
+<h3 id="Overlay-Types（覆盖类型）"><a href="#Overlay-Types（覆盖类型）" class="headerlink" title="Overlay Types（覆盖类型）"></a>Overlay Types（覆盖类型）</h3><h4 id="1-Arrow-箭头"><a href="#1-Arrow-箭头" class="headerlink" title="1. Arrow(箭头)"></a>1. Arrow(箭头)</h4><p>一个箭头 使用四个点：头、两个尾点和一个foldback(监听)，它允许箭头的箭尾缩进。此覆盖的可用构造函数参数：</p>
+<ul>
+<li>width：宽度</li>
+<li>length：长度</li>
+<li>location：在连接线上的位置</li>
+<li>direction：默认1-向前，-1向后</li>
+<li>foldback：箭头沿轴到尾点的监听。默认是0.623</li>
+<li>paintStyle：<code>Endpoints</code> 和 <code>Connectors</code> 的样式对象</li>
+</ul>
+<h4 id="2-PlainArrow（平原箭头）"><a href="#2-PlainArrow（平原箭头）" class="headerlink" title="2. PlainArrow（平原箭头）"></a>2. PlainArrow（平原箭头）</h4><p>这其实就是一个 foldback=1 的 Arror；继承Arror的构造函数</p>
+<h4 id="3-Diamond（菱形）"><a href="#3-Diamond（菱形）" class="headerlink" title="3. Diamond（菱形）"></a>3. Diamond（菱形）</h4><p>这其实就是一个 foldback=2 的 Arror；继承Arror的构造函数</p>
+<h4 id="4-Label（标签）"><a href="#4-Label（标签）" class="headerlink" title="4. Label（标签）"></a>4. Label（标签）</h4><p>(1) 介绍</p>
+<p>提供装饰连接器的文本标签。可用的构造函数参数是：</p>
+<ul>
+<li>label : 文本显示。 您可以提供一个函数,而不是纯文本:连接作为一个参数传递,它应该返回一个字符串。</li>
+<li>cssClass :可选的css类使用的标签。现在优先使用 labelStyle 参数。</li>
+<li>labelStyle ： 可选参数标签的外观。 可用参数有：<ul>
+<li>font ：一种适用于画布元素的字体字符串</li>
+<li>fillStyle ：标签的背景颜色填充，可选。</li>
+<li>color ：字体颜色，可选</li>
+<li>padding ：表示标签的宽度的比例，而不是px和ems。</li>
+<li>borderWidth ：标签的边框宽度，默认0</li>
+<li>borderStyle ：标签边框的样式，可选</li>
+</ul>
+</li>
+<li>location ：标签位置</li>
+</ul>
+<p>(2). <code>getLabel</code> 和 <code>setLabel</code></p>
+<p>标签覆盖提供了两个方法 <code>getLabel</code> 和 <code>setLabel</code> 用于动态地get/set标签内容:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> c = jsPlumb.connect(&#123;</div><div class="line">  source:<span class="string">"d1"</span>, </div><div class="line">  target:<span class="string">"d2"</span>, </div><div class="line">  overlays:[</div><div class="line">    [ <span class="string">"Label"</span>, &#123;<span class="attr">label</span>:<span class="string">"FOO"</span>, <span class="attr">id</span>:<span class="string">"label"</span>&#125;]</div><div class="line">  ] </div><div class="line">&#125;);</div><div class="line">    </div><div class="line">...</div><div class="line">    </div><div class="line"><span class="keyword">var</span> label = c.getOverlay(<span class="string">"label"</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"Label is currently"</span>, label.getLabel());</div><div class="line">label.setLabel(<span class="string">"BAR"</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"Label is now"</span>, label.getLabel());</div></pre></td></tr></table></figure>
+<p>这个例子里，标签被赋予一个id ‘label’，然后检索这个id动态设置lable的值。</p>
+<p>Connections 和Endpoints 都支持 标签覆盖：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> conn = jsPlumb.connect(&#123;</div><div class="line">  source:<span class="string">"d1"</span>, </div><div class="line">  target:<span class="string">"d2"</span>,</div><div class="line">  label:<span class="string">"FOO"</span></div><div class="line">&#125;);</div><div class="line">    </div><div class="line">...</div><div class="line">    </div><div class="line"><span class="built_in">console</span>.log(<span class="string">"Label is currently"</span>, conn.getLabel());</div><div class="line">conn.setLabel(<span class="string">"BAR"</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"Label is now"</span>, conn.getLabel());</div></pre></td></tr></table></figure>
+<p>(3). 动态设置label</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> conn = jsPlumb.connect(&#123;</div><div class="line">  source:<span class="string">"d1"</span>, </div><div class="line">  target:<span class="string">"d2"</span></div><div class="line">&#125;);                 </div><div class="line">    </div><div class="line">...</div><div class="line">    </div><div class="line">conn.setLabel(<span class="function"><span class="keyword">function</span>(<span class="params">c</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> s = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">  <span class="keyword">return</span> s.getTime() + <span class="string">"milliseconds have elapsed since 01/01/1970"</span>;</div><div class="line">&#125;);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"Label is now"</span>, conn.getLabel());</div></pre></td></tr></table></figure>
+<p>og(“#### 5. Custom（自定义）</p>
+<p>jsPlumb允许自定义一个 OverLays，你只需要实现 create(component)：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> conn = jsPlumb.connect(&#123;</div><div class="line">  source:<span class="string">"d1"</span>,</div><div class="line">  target:<span class="string">"d2"</span>,</div><div class="line">  paintStyle:&#123;</div><div class="line">    strokeStyle:<span class="string">"red"</span>,</div><div class="line">    lineWidth:<span class="number">3</span></div><div class="line">  &#125;,</div><div class="line">  overlays:[</div><div class="line">    [<span class="string">"Custom"</span>, &#123;</div><div class="line">      create:<span class="function"><span class="keyword">function</span>(<span class="params">component</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> $(<span class="string">"&lt;select id='myDropDown'&gt;&lt;option value='foo'&gt;foo&lt;/option&gt;&lt;option value='bar'&gt;bar&lt;/option&gt;&lt;/select&gt;"</span>);                </div><div class="line">      &#125;,</div><div class="line">      location:<span class="number">0.7</span>,</div><div class="line">      id:<span class="string">"customOverlay"</span></div><div class="line">    &#125;]</div><div class="line">  ]</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>注意 此处的id为 <code>customeOverlay</code> ，你可以在 Connection 或者 Endpoint上使用 <code>getOverlay(id)</code> 方法。</p>
+<h3 id="隐藏-显示-Overlays（覆盖）"><a href="#隐藏-显示-Overlays（覆盖）" class="headerlink" title="隐藏/显示 Overlays（覆盖）"></a>隐藏/显示 Overlays（覆盖）</h3><p>可以使用 <code>setVisible</code> 方法控制 <code>Overlays</code> 的显示属性，或者在一个连接上使用 <code>showOverlay(id)</code> 和 <code>hideOverlay(id)</code>。</p>
+<p>(1). 使用id：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> connection = jsPlumb.connect(&#123;</div><div class="line">   ...</div><div class="line">   overlays:[ </div><div class="line">     <span class="string">"Arrow"</span>, </div><div class="line">     [ <span class="string">"Label"</span>, &#123; <span class="attr">label</span>:<span class="string">"foo"</span>, <span class="attr">location</span>:<span class="number">0.25</span>, <span class="attr">id</span>:<span class="string">"myLabel"</span> &#125; ]</div><div class="line">   ],</div><div class="line">   ...</div><div class="line"> &#125;);</div><div class="line"> </div><div class="line"> <span class="comment">// time passes</span></div><div class="line"> </div><div class="line"> <span class="keyword">var</span> overlay = connection.getOverlay(<span class="string">"myLabel"</span>);</div><div class="line"> <span class="comment">// now you can hide this Overlay:</span></div><div class="line"> overlay.setVisible(<span class="literal">false</span>);</div><div class="line"> <span class="comment">// there are also hide/show methods:</span></div><div class="line"> overlay.show();</div><div class="line"> overlay.hide();</div></pre></td></tr></table></figure>
+<p>(2). 使用 <code>showOverlay(id)</code> 和 <code>hideOverlay(id)</code>：</p>
+<p>Connection 和 Endpoint 可以使用<code>showOverlay(id)</code> 和 <code>hideOverlay(id)</code>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> connection = jsPlumb.connect(&#123;</div><div class="line">  ...</div><div class="line">  overlays:[ </div><div class="line">    <span class="string">"Arrow"</span>, </div><div class="line">    [ <span class="string">"Label"</span>, &#123; <span class="attr">label</span>:<span class="string">"foo"</span>, <span class="attr">location</span>:<span class="number">-30</span> , <span class="attr">id</span>:<span class="string">"myLabel"</span> &#125;]</div><div class="line">  ],</div><div class="line">  ...</div><div class="line">&#125;);</div><div class="line">    </div><div class="line"><span class="comment">// time passes</span></div><div class="line">    </div><div class="line">connection.hideOverlay(<span class="string">"myLabel"</span>);</div><div class="line">    </div><div class="line"><span class="comment">// more time passes</span></div><div class="line">    </div><div class="line">connection.showOverlay(<span class="string">"myLabel"</span>);</div></pre></td></tr></table></figure>
+<h3 id="删除-Overlays-覆盖"><a href="#删除-Overlays-覆盖" class="headerlink" title="删除 Overlays(覆盖)"></a>删除 Overlays(覆盖)</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> connection = jsPlumb.connect(&#123;</div><div class="line">  ...</div><div class="line">  overlays:[ </div><div class="line">    <span class="string">"Arrow"</span>, </div><div class="line">    [ <span class="string">"Label"</span>, &#123; <span class="attr">label</span>:<span class="string">"foo"</span>, <span class="attr">location</span>:<span class="number">0.25</span> , <span class="attr">id</span>:<span class="string">"myLabel"</span>&#125; ]</div><div class="line">  ],</div><div class="line">  ...</div><div class="line">&#125;);     </div><div class="line">    </div><div class="line"><span class="comment">// time passes</span></div><div class="line">    </div><div class="line">connection.removeOverlay(<span class="string">"myLabel"</span>);</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/jsPlumb/" rel="tag"># jsPlumb</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/15/mysql-install/" rel="next" title="Mysql 安装">
+                <i class="fa fa-chevron-left"></i> Mysql 安装
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/15/oracle/" rel="prev" title="Oracle 建库语句">
+                Oracle 建库语句 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMTAxMy83NTYy"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="/images/IMG_0071.JPG"
+              alt="Mr、Gao" />
+          
+            <p class="site-author-name" itemprop="name">Mr、Gao</p>
+            <p class="site-description motion-element" itemprop="description">不积跬步无以至千里</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ghycn" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:349111145@gmail.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jsPlumb-基本概念"><span class="nav-number"></span> <span class="nav-text">jsPlumb 基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、默认属性"><span class="nav-number"></span> <span class="nav-text">一、默认属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、锚点-Anchor"><span class="nav-number"></span> <span class="nav-text">二、锚点(Anchor)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-默认锚位置"><span class="nav-number">1.</span> <span class="nav-text">1 . 默认锚位置:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-基于数组的语法-x-y-dx-dy"><span class="nav-number">2.</span> <span class="nav-text">2 . 基于数组的语法 [x,y,dx,dy]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-动态锚"><span class="nav-number">3.</span> <span class="nav-text">3 . 动态锚</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-多边形锚"><span class="nav-number">4.</span> <span class="nav-text">4 . 多边形锚</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-单个多边形"><span class="nav-number">4.1.</span> <span class="nav-text">(1) 单个多边形</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-组合锚点（三角形与菱形）："><span class="nav-number">4.2.</span> <span class="nav-text">(2) 组合锚点（三角形与菱形）：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-自定义角度多边形锚点"><span class="nav-number">4.3.</span> <span class="nav-text">(3) 自定义角度多边形锚点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-CSS类和锚点"><span class="nav-number">5.</span> <span class="nav-text">5. CSS类和锚点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-介绍"><span class="nav-number">5.1.</span> <span class="nav-text">(1)介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-示例"><span class="nav-number">5.2.</span> <span class="nav-text">(2)示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-改变锚类前缀"><span class="nav-number">5.3.</span> <span class="nav-text">(3)改变锚类前缀</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、连接线-器-Connectors"><span class="nav-number"></span> <span class="nav-text">三、连接线(器)(Connectors)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-简介"><span class="nav-number">1.</span> <span class="nav-text">1. 简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#straight"><span class="nav-number">2.</span> <span class="nav-text">straight</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bezier"><span class="nav-number">3.</span> <span class="nav-text">Bezier</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flowchart"><span class="nav-number">4.</span> <span class="nav-text">flowchart</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#state-machine"><span class="nav-number">5.</span> <span class="nav-text">state machine</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、端点-Endpoints"><span class="nav-number"></span> <span class="nav-text">四、端点(Endpoints)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建"><span class="nav-number">2.</span> <span class="nav-text">创建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-connect"><span class="nav-number">2.1.</span> <span class="nav-text">(1)connect</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-addEndpoint"><span class="nav-number">2.2.</span> <span class="nav-text">(2)addEndpoint</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-makeSource"><span class="nav-number">2.3.</span> <span class="nav-text">(3)makeSource()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型"><span class="nav-number">3.</span> <span class="nav-text">类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Dot"><span class="nav-number">3.1.</span> <span class="nav-text">(1)Dot</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Rectangle"><span class="nav-number">3.2.</span> <span class="nav-text">(2)Rectangle</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Image"><span class="nav-number">3.3.</span> <span class="nav-text">(3)Image</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、覆盖（连接元素）-Overlays"><span class="nav-number"></span> <span class="nav-text">五、覆盖（连接元素）(Overlays)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-1"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#位置"><span class="nav-number">2.</span> <span class="nav-text">位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-在-jsPlumb-connect-被调用时使用"><span class="nav-number">3.1.</span> <span class="nav-text">1. 在 jsPlumb.connect 被调用时使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-在-jsPlumb-addEndpoint-被调用时使用"><span class="nav-number">3.2.</span> <span class="nav-text">2. 在 jsPlumb.addEndpoint 被调用时使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-在-jsPlumb-makeSource"><span class="nav-number">3.3.</span> <span class="nav-text">3. 在 jsPlumb.makeSource</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-addOverlay-方法"><span class="nav-number">3.4.</span> <span class="nav-text">4. addOverlay 方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Overlay-Types（覆盖类型）"><span class="nav-number">4.</span> <span class="nav-text">Overlay Types（覆盖类型）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Arrow-箭头"><span class="nav-number">4.1.</span> <span class="nav-text">1. Arrow(箭头)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-PlainArrow（平原箭头）"><span class="nav-number">4.2.</span> <span class="nav-text">2. PlainArrow（平原箭头）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Diamond（菱形）"><span class="nav-number">4.3.</span> <span class="nav-text">3. Diamond（菱形）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Label（标签）"><span class="nav-number">4.4.</span> <span class="nav-text">4. Label（标签）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#隐藏-显示-Overlays（覆盖）"><span class="nav-number">5.</span> <span class="nav-text">隐藏/显示 Overlays（覆盖）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除-Overlays-覆盖"><span class="nav-number">6.</span> <span class="nav-text">删除 Overlays(覆盖)</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr、Gao</span>
+
+  
+</div>
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">
+ <span>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></span>
+  </div>
+
+-->
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
