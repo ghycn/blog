@@ -69,18 +69,18 @@
 
 
 
-<meta name="description" content="Spring动态开启，关闭定时任务">
+<meta name="description" content="摘要 Spring动态开启，关闭定时任务">
 <meta name="keywords" content="定时任务">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring动态开启，关闭定时任务">
 <meta property="og:url" content="http://www.gaohy.top/2017/10/17/spring-quartz/index.html">
 <meta property="og:site_name" content="Mr、Gao个人小屋">
-<meta property="og:description" content="Spring动态开启，关闭定时任务">
+<meta property="og:description" content="摘要 Spring动态开启，关闭定时任务">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-17T02:33:32.726Z">
+<meta property="og:updated_time" content="2017-10-17T02:35:15.766Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring动态开启，关闭定时任务">
-<meta name="twitter:description" content="Spring动态开启，关闭定时任务">
+<meta name="twitter:description" content="摘要 Spring动态开启，关闭定时任务">
 
 
 
@@ -322,7 +322,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-10-17T10:33:32+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2017-10-17T10:35:15+08:00">
                 2017-10-17
               </time>
             
@@ -383,7 +383,10 @@
       
 
       
-        <h3 id="Spring动态开启，关闭定时任务"><a href="#Spring动态开启，关闭定时任务" class="headerlink" title="Spring动态开启，关闭定时任务"></a>Spring动态开启，关闭定时任务</h3><a id="more"></a>
+        <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><ul>
+<li>Spring动态开启，关闭定时任务<a id="more"></a>
+</li>
+</ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Autowired</span></div><div class="line"><span class="keyword">private</span> ThreadPoolTaskScheduler threadPoolTaskScheduler;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> ScheduledFuture&lt;?&gt; future = <span class="keyword">null</span>;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//开启定时任务</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">startCron</span><span class="params">()</span> </span>&#123;</div><div class="line">    String cron = <span class="string">""</span>;</div><div class="line">    String hour= backupTime.split(<span class="string">":"</span>)[<span class="number">0</span>];</div><div class="line">    String minute  = backupTime.split(<span class="string">":"</span>)[<span class="number">1</span>];</div><div class="line">    <span class="keyword">if</span>(<span class="string">"1"</span>.endsWith(period))&#123;<span class="comment">//如果周期是月</span></div><div class="line">        <span class="comment">//"0 15 10 15 * ?" 每月15日上午10:15触发 </span></div><div class="line">        cron = <span class="string">"0 "</span>+minute+<span class="string">" "</span>+hour+<span class="string">" 1 * ?"</span>;<span class="comment">//每月1号触发</span></div><div class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">"2"</span>.endsWith(period))&#123;<span class="comment">//如果周期是周</span></div><div class="line">        <span class="comment">//0 59 2 ? * FRI    每周5凌晨2点59分触发</span></div><div class="line">        cron = <span class="string">"0 "</span>+minute+<span class="string">" "</span>+hour+<span class="string">" ? * MON"</span>;<span class="comment">//每周一触发</span></div><div class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">"3"</span>.endsWith(period))&#123;<span class="comment">//如果周期是日</span></div><div class="line">        <span class="comment">//"0 0 12 * * ?" 每天中午12点触发 </span></div><div class="line">        cron = <span class="string">"0 "</span>+minute+<span class="string">" "</span>+hour+<span class="string">" * * ?"</span>;<span class="comment">//每日触发</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (future != <span class="keyword">null</span>) &#123;</div><div class="line">        future.cancel(<span class="keyword">true</span>);</div><div class="line">    &#125;</div><div class="line">    System.out.println(<span class="string">"《==================定时开启时间："</span>+cron);</div><div class="line">    <span class="comment">//cron="0/15 * * * * *";</span></div><div class="line">    future = threadPoolTaskScheduler.schedule(<span class="keyword">new</span> InitUtil(dataBackupService,logService,<span class="number">0</span>), <span class="keyword">new</span> CronTrigger(cron));</div><div class="line">    logService.saveLog(<span class="string">"开启数据库自动备份任务"</span>, Operation.DATA_BACKUP);</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//关闭定时任务	</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">stopCron</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (future != <span class="keyword">null</span>) &#123;</div><div class="line">        future.cancel(<span class="keyword">true</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
@@ -576,7 +579,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring动态开启，关闭定时任务"><span class="nav-number">1.</span> <span class="nav-text">Spring动态开启，关闭定时任务</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li></ol></div>
             
 
           </div>
