@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -53,7 +53,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="docker," />
+  <meta name="keywords" content="Mac jdk," />
 
 
 
@@ -62,25 +62,28 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+  <link rel="shortcut icon" type="image/x-icon" href="/coding.ico?v=5.1.2" />
 
 
 
 
 
 
-<meta name="description" content="摘要 Docker 常用命令简单记录。">
-<meta name="keywords" content="docker">
+<meta name="description" content="摘要 Mac下多版本JDK配置，动态切换JDK版本。">
+<meta name="keywords" content="Mac jdk">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Docker 常用命令">
-<meta property="og:url" content="http://www.gaohy.top/2017/10/15/docker/index.html">
+<meta property="og:title" content="Mac下多版本JDK配置">
+<meta property="og:url" content="http://www.gaohy.top/2017/10/19/mac-jdk/index.html">
 <meta property="og:site_name" content="Mr、Gao个人小屋">
-<meta property="og:description" content="摘要 Docker 常用命令简单记录。">
+<meta property="og:description" content="摘要 Mac下多版本JDK配置，动态切换JDK版本。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-15T07:33:25.783Z">
+<meta property="og:image" content="http://www.gaohy.top/images/Mac-jdk.png">
+<meta property="og:image" content="http://www.gaohy.top/images/jdk-version.png">
+<meta property="og:updated_time" content="2017-10-18T09:47:26.737Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Docker 常用命令">
-<meta name="twitter:description" content="摘要 Docker 常用命令简单记录。">
+<meta name="twitter:title" content="Mac下多版本JDK配置">
+<meta name="twitter:description" content="摘要 Mac下多版本JDK配置，动态切换JDK版本。">
+<meta name="twitter:image" content="http://www.gaohy.top/images/Mac-jdk.png">
 
 
 
@@ -88,7 +91,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
+    scheme: 'Mist',
     version: '5.1.2',
     sidebar: {"position":"left","display":"hide","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -110,13 +113,13 @@
 
 
 
-  <link rel="canonical" href="http://www.gaohy.top/2017/10/15/docker/"/>
+  <link rel="canonical" href="http://www.gaohy.top/2017/10/19/mac-jdk/"/>
 
 
 
 
 
-  <title>Docker 常用命令 | Mr、Gao个人小屋</title>
+  <title>Mac下多版本JDK配置 | Mr、Gao个人小屋</title>
   
 
 
@@ -277,7 +280,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.gaohy.top/2017/10/15/docker/">
+    <link itemprop="mainEntityOfPage" href="http://www.gaohy.top/2017/10/19/mac-jdk/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr、Gao">
@@ -294,7 +297,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Docker 常用命令</h1>
+          <h1 class="post-title" itemprop="name headline">Mac下多版本JDK配置</h1>
         
 
         <div class="post-meta">
@@ -306,8 +309,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-15T15:33:25+08:00">
-                2017-10-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-19T01:47:24+08:00">
+                2017-10-18
               </time>
             
 
@@ -322,8 +325,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-10-15T15:33:25+08:00">
-                2017-10-15
+              <time title="更新于" itemprop="dateModified" datetime="2017-10-18T17:47:26+08:00">
+                2017-10-18
               </time>
             
           </span>
@@ -341,8 +344,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/docker/" itemprop="url" rel="index">
-                    <span itemprop="name">docker</span>
+                  <a href="/categories/jdk/" itemprop="url" rel="index">
+                    <span itemprop="name">jdk</span>
                   </a>
                 </span>
 
@@ -384,12 +387,14 @@
 
       
         <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><ul>
-<li>Docker 常用命令简单记录。</li>
+<li>Mac下多版本JDK配置，动态切换JDK版本。</li>
 </ul>
 <a id="more"></a>
-<h3 id="Docker容器命令"><a href="#Docker容器命令" class="headerlink" title="Docker容器命令"></a>Docker容器命令</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">docker images  查看所有镜像列表</div><div class="line"></div><div class="line">docker ps    查看运行的容器</div><div class="line"></div><div class="line">docker ps -a  查看所有容器</div><div class="line"></div><div class="line">docker ps -l  查看上一个执行的容器</div><div class="line"></div><div class="line">docker  start  ID      docker stop ID</div><div class="line"></div><div class="line">docker <span class="built_in">exec</span> -t -i    容器名称    /bin/bash    ps:进入到容器内部命令</div><div class="line"></div><div class="line">docker logs 容器名称     查看容器日志</div></pre></td></tr></table></figure>
-<!-- more -->
-<h3 id="Docker主机文件复制到容器中"><a href="#Docker主机文件复制到容器中" class="headerlink" title="Docker主机文件复制到容器中"></a>Docker主机文件复制到容器中</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">docker inspect -f  <span class="string">'&#123;&#123;.Id&#125;&#125;'</span>  容器id或名称      ps:获取整个容器完整ID命令</div><div class="line"></div><div class="line">docker cp  /root/software/demo-web.war 7726a9603a775f4b82e2c271c48d98505bcb2de3b4c53761b740485cc3c7db4a:/root/software/demo-web.war</div><div class="line"></div><div class="line">ps:7726a..为容器的完整ID</div></pre></td></tr></table></figure>
+<h3 id="一-下载"><a href="#一-下载" class="headerlink" title="一.下载"></a>一.下载</h3><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">链接<span class="symbol">:http</span><span class="symbol">://pan</span>.baidu.com/s/<span class="number">1</span>dFjcdrV  密码<span class="symbol">:mmt3</span></div></pre></td></tr></table></figure>
+<h3 id="二-安装"><a href="#二-安装" class="headerlink" title="二.安装"></a>二.安装</h3><figure class="highlight coq"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">JDK默认安装路径为/<span class="keyword">Library</span>/Java/JavaVirtualMachines</div><div class="line">多版本安装后效果为</div></pre></td></tr></table></figure>
+<p><img src="/images/Mac-jdk.png" alt=""></p>
+<h3 id="三-设置"><a href="#三-设置" class="headerlink" title="三.设置"></a>三.设置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">1.执行以下命令</div><div class="line"> <span class="built_in">cd</span> ~</div><div class="line"> open -e .bash_profile  <span class="comment">#打开.bash_profile文件</span></div><div class="line"></div><div class="line"> <span class="comment">#注:假如.bash_profile文件不存在执行下面命令新建文件</span></div><div class="line"> <span class="built_in">cd</span> ~</div><div class="line"> touch .bash_profile <span class="comment">#新建.bash_profile文件</span></div><div class="line"> ls -a <span class="comment">#查看文件是否创建成功</span></div><div class="line"> </div><div class="line">2.在打开的.bash_profile文件中添加下面内容然后关闭</div><div class="line"> <span class="comment">#添加JDK的环境变量</span></div><div class="line"> <span class="built_in">export</span> JAVA_7_HOME=/Library/Java/JavaVirtualMachines/ jdk1.7.0_79.jdk/Contents/Home</div><div class="line"> <span class="built_in">export</span> JAVA_8_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home</div><div class="line"> <span class="comment">#默认JDK1.7</span></div><div class="line"> <span class="built_in">export</span> JAVA_HOME=<span class="variable">$JAVA_7_HOME</span></div><div class="line"> <span class="comment">#alias命令动态切换JDK版本  </span></div><div class="line"> <span class="built_in">alias</span> jdk7=<span class="string">"export JAVA_HOME=<span class="variable">$JAVA_7_HOME</span>"</span></div><div class="line"> <span class="built_in">alias</span> jdk8=<span class="string">"export JAVA_HOME=<span class="variable">$JAVA_8_HOME</span>"</span></div><div class="line"></div><div class="line">3.设置生效</div><div class="line"> <span class="built_in">cd</span> ~</div><div class="line"> <span class="built_in">source</span> .bash_profile <span class="comment">#设置配置立即生效</span></div></pre></td></tr></table></figure>
+<h3 id="四-验证是否安装成功"><a href="#四-验证是否安装成功" class="headerlink" title="四.验证是否安装成功"></a>四.验证是否安装成功</h3><p><img src="/images/jdk-version.png" alt=""></p>
 
       
     </div>
@@ -407,7 +412,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/docker/" rel="tag"># docker</a>
+            <a href="/tags/Mac-jdk/" rel="tag"># Mac jdk</a>
           
         </div>
       
@@ -420,14 +425,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/10/19/mysql-install/" rel="next" title="Mysql 安装">
+                <i class="fa fa-chevron-left"></i> Mysql 安装
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/15/es-start/" rel="prev" title="Elasticsearch 设置自启动">
-                Elasticsearch 设置自启动 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/19/linux/" rel="prev" title="Linux 常用命令">
+                Linux 常用命令 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -581,7 +590,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker容器命令"><span class="nav-number">2.</span> <span class="nav-text">Docker容器命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker主机文件复制到容器中"><span class="nav-number">3.</span> <span class="nav-text">Docker主机文件复制到容器中</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一-下载"><span class="nav-number">2.</span> <span class="nav-text">一.下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二-安装"><span class="nav-number">3.</span> <span class="nav-text">二.安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三-设置"><span class="nav-number">4.</span> <span class="nav-text">三.设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四-验证是否安装成功"><span class="nav-number">5.</span> <span class="nav-text">四.验证是否安装成功</span></a></li></ol></div>
             
 
           </div>
@@ -723,13 +732,6 @@
 
   
   
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
-
-
 
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>

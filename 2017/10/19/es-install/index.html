@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -53,7 +53,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Oracle建库语句," />
+  <meta name="keywords" content="Elasticsearch,linux," />
 
 
 
@@ -62,25 +62,27 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+  <link rel="shortcut icon" type="image/x-icon" href="/coding.ico?v=5.1.2" />
 
 
 
 
 
 
-<meta name="description" content="摘要 Oracle 建库语句。">
-<meta name="keywords" content="Oracle建库语句">
+<meta name="description" content="摘要 Elasticsearch5.X Centos7安装过程。">
+<meta name="keywords" content="Elasticsearch,linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Oracle 建库语句">
-<meta property="og:url" content="http://www.gaohy.top/2017/10/15/oracle/index.html">
+<meta property="og:title" content="Elasticsearch5.X Centos7安装过程">
+<meta property="og:url" content="http://www.gaohy.top/2017/10/19/es-install/index.html">
 <meta property="og:site_name" content="Mr、Gao个人小屋">
-<meta property="og:description" content="摘要 Oracle 建库语句。">
+<meta property="og:description" content="摘要 Elasticsearch5.X Centos7安装过程。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-15T07:33:25.785Z">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7048598-f69c60a0d32f5aaa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600">
+<meta property="og:updated_time" content="2017-10-18T09:48:56.557Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Oracle 建库语句">
-<meta name="twitter:description" content="摘要 Oracle 建库语句。">
+<meta name="twitter:title" content="Elasticsearch5.X Centos7安装过程">
+<meta name="twitter:description" content="摘要 Elasticsearch5.X Centos7安装过程。">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/7048598-f69c60a0d32f5aaa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600">
 
 
 
@@ -88,7 +90,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
+    scheme: 'Mist',
     version: '5.1.2',
     sidebar: {"position":"left","display":"hide","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -110,13 +112,13 @@
 
 
 
-  <link rel="canonical" href="http://www.gaohy.top/2017/10/15/oracle/"/>
+  <link rel="canonical" href="http://www.gaohy.top/2017/10/19/es-install/"/>
 
 
 
 
 
-  <title>Oracle 建库语句 | Mr、Gao个人小屋</title>
+  <title>Elasticsearch5.X Centos7安装过程 | Mr、Gao个人小屋</title>
   
 
 
@@ -277,7 +279,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.gaohy.top/2017/10/15/oracle/">
+    <link itemprop="mainEntityOfPage" href="http://www.gaohy.top/2017/10/19/es-install/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr、Gao">
@@ -294,7 +296,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Oracle 建库语句</h1>
+          <h1 class="post-title" itemprop="name headline">Elasticsearch5.X Centos7安装过程</h1>
         
 
         <div class="post-meta">
@@ -306,8 +308,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-15T15:33:25+08:00">
-                2017-10-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-19T01:48:54+08:00">
+                2017-10-18
               </time>
             
 
@@ -322,8 +324,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-10-15T15:33:25+08:00">
-                2017-10-15
+              <time title="更新于" itemprop="dateModified" datetime="2017-10-18T17:48:56+08:00">
+                2017-10-18
               </time>
             
           </span>
@@ -341,8 +343,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Oracle/" itemprop="url" rel="index">
-                    <span itemprop="name">Oracle</span>
+                  <a href="/categories/Elasticsearch/" itemprop="url" rel="index">
+                    <span itemprop="name">Elasticsearch</span>
                   </a>
                 </span>
 
@@ -384,13 +386,16 @@
 
       
         <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><ul>
-<li>Oracle 建库语句。</li>
+<li>Elasticsearch5.X Centos7安装过程。</li>
 </ul>
 <a id="more"></a>
-<h3 id="Oracle-建库共分为四步"><a href="#Oracle-建库共分为四步" class="headerlink" title="Oracle 建库共分为四步"></a>Oracle 建库共分为四步</h3><h4 id="第1步：创建临时表空间"><a href="#第1步：创建临时表空间" class="headerlink" title="第1步：创建临时表空间"></a>第1步：创建临时表空间</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">temporary</span> <span class="keyword">tablespace</span> user_temp  </div><div class="line">tempfile <span class="string">'D:\oracle\oradata\Oracle9i\user_temp.dbf'</span> </div><div class="line"><span class="keyword">size</span> <span class="number">50</span>m  </div><div class="line"><span class="keyword">autoextend</span> <span class="keyword">on</span>  </div><div class="line"><span class="keyword">next</span> <span class="number">50</span>m <span class="keyword">maxsize</span> <span class="number">20480</span>m  </div><div class="line"><span class="keyword">extent</span> <span class="keyword">management</span> <span class="keyword">local</span>;</div></pre></td></tr></table></figure>
-<h4 id="第2步：创建数据表空间"><a href="#第2步：创建数据表空间" class="headerlink" title="第2步：创建数据表空间"></a>第2步：创建数据表空间</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">tablespace</span> <span class="keyword">user_data</span>  </div><div class="line"><span class="keyword">logging</span>  </div><div class="line"><span class="keyword">datafile</span> <span class="string">'D:\oracle\oradata\Oracle9i\user_data.dbf'</span> </div><div class="line"><span class="keyword">size</span> <span class="number">50</span>m  </div><div class="line"><span class="keyword">autoextend</span> <span class="keyword">on</span>  </div><div class="line"><span class="keyword">next</span> <span class="number">50</span>m <span class="keyword">maxsize</span> <span class="number">20480</span>m  </div><div class="line"><span class="keyword">extent</span> <span class="keyword">management</span> <span class="keyword">local</span>;</div></pre></td></tr></table></figure>
-<h4 id="第3步：创建用户并指定表空间"><a href="#第3步：创建用户并指定表空间" class="headerlink" title="第3步：创建用户并指定表空间"></a>第3步：创建用户并指定表空间</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">user</span> username <span class="keyword">identified</span> <span class="keyword">by</span> <span class="keyword">password</span>  </div><div class="line"><span class="keyword">default</span> <span class="keyword">tablespace</span> <span class="keyword">user_data</span>  </div><div class="line"><span class="keyword">temporary</span> <span class="keyword">tablespace</span> user_temp;</div></pre></td></tr></table></figure>
-<h4 id="第4步：给用户授予权限"><a href="#第4步：给用户授予权限" class="headerlink" title="第4步：给用户授予权限"></a>第4步：给用户授予权限</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">grant</span> <span class="keyword">connect</span>,<span class="keyword">resource</span>,dba <span class="keyword">to</span> username;</div></pre></td></tr></table></figure>
+<h3 id="下载地址：Elasticsearch-5-5-2-tar-gz"><a href="#下载地址：Elasticsearch-5-5-2-tar-gz" class="headerlink" title="下载地址：Elasticsearch-5.5.2.tar.gz"></a>下载地址：<a href="https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.5.2.tar.gz" target="_blank" rel="external">Elasticsearch-5.5.2.tar.gz</a></h3><h3 id="ElasticSearch-安装"><a href="#ElasticSearch-安装" class="headerlink" title="ElasticSearch 安装"></a>ElasticSearch 安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#Elasticsearch默认不推荐使用root用户启动，所以创建用户</span></div><div class="line"><span class="comment">#创建用户elastic </span></div><div class="line">useradd   elastic</div><div class="line"></div><div class="line"><span class="comment">#设置密码 （回车后输入密码）</span></div><div class="line">passwd   elastic</div><div class="line"></div><div class="line"><span class="comment">#切到elastic用户目录下</span></div><div class="line"><span class="built_in">cd</span> /home/elastic</div><div class="line"></div><div class="line"><span class="comment">#下载Elasticsearch安装包</span></div><div class="line">wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.5.2.tar.gz</div><div class="line"></div><div class="line"><span class="comment">#解压安装包</span></div><div class="line">tar -xzvf elasticsearch-5.5.2.tar.gz</div><div class="line"></div><div class="line"><span class="comment">#给elastic用户设置文件读写权限</span></div><div class="line">chown -R elastic:elastic  elasticsearch-5.5.2</div><div class="line"></div><div class="line"><span class="comment">#切换到elastic用户，并启动elasticsearch</span></div><div class="line">su elastic</div><div class="line">sh elasticsearch-5.5.2/bin/elasticsearch</div></pre></td></tr></table></figure>
+<h3 id="启动测试"><a href="#启动测试" class="headerlink" title="启动测试"></a>启动测试</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">执行命令  curl http://localhost:9200/</div><div class="line"><span class="comment">#得到以下结果则启动成功</span></div><div class="line">&#123;</div><div class="line">  <span class="string">"name"</span> : <span class="string">"_EArkv7"</span>,</div><div class="line">  <span class="string">"cluster_name"</span> : <span class="string">"elasticsearch"</span>,</div><div class="line">  <span class="string">"cluster_uuid"</span> : <span class="string">"q9gTAC0gTduDqxiV9JgE_g"</span>,</div><div class="line">  <span class="string">"version"</span> : &#123;</div><div class="line">    <span class="string">"number"</span> : <span class="string">"5.5.2"</span>,</div><div class="line">    <span class="string">"build_hash"</span> : <span class="string">"b2f0c09"</span>,</div><div class="line">    <span class="string">"build_date"</span> : <span class="string">"2017-08-14T12:33:14.154Z"</span>,</div><div class="line">    <span class="string">"build_snapshot"</span> : <span class="literal">false</span>,</div><div class="line">    <span class="string">"lucene_version"</span> : <span class="string">"6.6.0"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="string">"tagline"</span> : <span class="string">"You Know, for Search"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="主机不能访问虚拟机9200端口"><a href="#主机不能访问虚拟机9200端口" class="headerlink" title="主机不能访问虚拟机9200端口"></a>主机不能访问虚拟机9200端口</h3><p>编辑Elasticsearch    <code>config/elasticsearch.yml</code> 配置文件。 如下图所示</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7048598-f69c60a0d32f5aaa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600" alt="image.png"></p>
+<h3 id="启动过程可能遇到的错误"><a href="#启动过程可能遇到的错误" class="headerlink" title="启动过程可能遇到的错误"></a>启动过程可能遇到的错误</h3><figure class="highlight subunit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">ERROR: </span>bootstrap checks failed</div><div class="line">1.max file descriptors [4096] for elasticsearch process likely too low, increase to at least [65536]</div><div class="line">2.max virtual memory areas vm.max_map_count [65530] likely too low, increase to at least [262144]</div></pre></td></tr></table></figure>
+<h4 id="1-问题一解决方法"><a href="#1-问题一解决方法" class="headerlink" title="1.问题一解决方法"></a>1.问题一解决方法</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#切换到root用户，编辑limits.conf </span></div><div class="line">vi /etc/security/limits.conf</div><div class="line"></div><div class="line"><span class="comment">#添加如下内容</span></div><div class="line">* hard nofile 65536</div><div class="line">* soft nofile 65536</div></pre></td></tr></table></figure>
+<h4 id="2-问题二解决方法"><a href="#2-问题二解决方法" class="headerlink" title="2.问题二解决方法"></a>2.问题二解决方法</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#切换到root用户修改配置sysctl.conf</span></div><div class="line">vi /etc/sysctl.conf</div><div class="line"></div><div class="line"><span class="comment">#添加下面配置：</span></div><div class="line">vm.max_map_count=655360</div><div class="line"></div><div class="line"><span class="comment">#并执行命令：</span></div><div class="line">sysctl -p</div><div class="line"></div><div class="line"><span class="comment">#重启Elasticsearch</span></div></pre></td></tr></table></figure>
 
       
     </div>
@@ -408,7 +413,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Oracle建库语句/" rel="tag"># Oracle建库语句</a>
+            <a href="/tags/Elasticsearch/" rel="tag"># Elasticsearch</a>
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
           
         </div>
       
@@ -421,8 +428,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/15/idea-register/" rel="next" title="IntelliJ IDEA完美激活">
-                <i class="fa fa-chevron-left"></i> IntelliJ IDEA完美激活
+              <a href="/2017/10/19/es-start/" rel="next" title="Elasticsearch 设置自启动">
+                <i class="fa fa-chevron-left"></i> Elasticsearch 设置自启动
               </a>
             
           </div>
@@ -431,8 +438,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/17/spring-quartz/" rel="prev" title="Spring动态开启，关闭定时任务">
-                Spring动态开启，关闭定时任务 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/19/docker/" rel="prev" title="Docker 常用命令">
+                Docker 常用命令 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -586,7 +593,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Oracle-建库共分为四步"><span class="nav-number">2.</span> <span class="nav-text">Oracle 建库共分为四步</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第1步：创建临时表空间"><span class="nav-number">2.1.</span> <span class="nav-text">第1步：创建临时表空间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第2步：创建数据表空间"><span class="nav-number">2.2.</span> <span class="nav-text">第2步：创建数据表空间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第3步：创建用户并指定表空间"><span class="nav-number">2.3.</span> <span class="nav-text">第3步：创建用户并指定表空间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第4步：给用户授予权限"><span class="nav-number">2.4.</span> <span class="nav-text">第4步：给用户授予权限</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下载地址：Elasticsearch-5-5-2-tar-gz"><span class="nav-number">2.</span> <span class="nav-text">下载地址：Elasticsearch-5.5.2.tar.gz</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ElasticSearch-安装"><span class="nav-number">3.</span> <span class="nav-text">ElasticSearch 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动测试"><span class="nav-number">4.</span> <span class="nav-text">启动测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主机不能访问虚拟机9200端口"><span class="nav-number">5.</span> <span class="nav-text">主机不能访问虚拟机9200端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动过程可能遇到的错误"><span class="nav-number">6.</span> <span class="nav-text">启动过程可能遇到的错误</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-问题一解决方法"><span class="nav-number">6.1.</span> <span class="nav-text">1.问题一解决方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-问题二解决方法"><span class="nav-number">6.2.</span> <span class="nav-text">2.问题二解决方法</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -728,13 +735,6 @@
 
   
   
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
-
-
 
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>

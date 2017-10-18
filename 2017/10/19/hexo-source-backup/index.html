@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -53,7 +53,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Elasticsearch,linux," />
+  <meta name="keywords" content="hexo备份," />
 
 
 
@@ -62,27 +62,25 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+  <link rel="shortcut icon" type="image/x-icon" href="/coding.ico?v=5.1.2" />
 
 
 
 
 
 
-<meta name="description" content="摘要 Elasticsearch5.X Centos7安装过程。">
-<meta name="keywords" content="Elasticsearch,linux">
+<meta name="description" content="摘要 hexo个人静态博客，源文件及主题备份，以防件丢失。">
+<meta name="keywords" content="hexo备份">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Elasticsearch5.X Centos7安装过程">
-<meta property="og:url" content="http://www.gaohy.top/2017/10/15/es-install/index.html">
+<meta property="og:title" content="hexo 源文件备份">
+<meta property="og:url" content="http://www.gaohy.top/2017/10/19/hexo-source-backup/index.html">
 <meta property="og:site_name" content="Mr、Gao个人小屋">
-<meta property="og:description" content="摘要 Elasticsearch5.X Centos7安装过程。">
+<meta property="og:description" content="摘要 hexo个人静态博客，源文件及主题备份，以防件丢失。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7048598-f69c60a0d32f5aaa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600">
-<meta property="og:updated_time" content="2017-10-15T07:33:25.783Z">
+<meta property="og:updated_time" content="2017-10-18T09:48:14.968Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Elasticsearch5.X Centos7安装过程">
-<meta name="twitter:description" content="摘要 Elasticsearch5.X Centos7安装过程。">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/7048598-f69c60a0d32f5aaa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600">
+<meta name="twitter:title" content="hexo 源文件备份">
+<meta name="twitter:description" content="摘要 hexo个人静态博客，源文件及主题备份，以防件丢失。">
 
 
 
@@ -90,7 +88,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
+    scheme: 'Mist',
     version: '5.1.2',
     sidebar: {"position":"left","display":"hide","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -112,13 +110,13 @@
 
 
 
-  <link rel="canonical" href="http://www.gaohy.top/2017/10/15/es-install/"/>
+  <link rel="canonical" href="http://www.gaohy.top/2017/10/19/hexo-source-backup/"/>
 
 
 
 
 
-  <title>Elasticsearch5.X Centos7安装过程 | Mr、Gao个人小屋</title>
+  <title>hexo 源文件备份 | Mr、Gao个人小屋</title>
   
 
 
@@ -279,7 +277,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.gaohy.top/2017/10/15/es-install/">
+    <link itemprop="mainEntityOfPage" href="http://www.gaohy.top/2017/10/19/hexo-source-backup/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr、Gao">
@@ -296,7 +294,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Elasticsearch5.X Centos7安装过程</h1>
+          <h1 class="post-title" itemprop="name headline">hexo 源文件备份</h1>
         
 
         <div class="post-meta">
@@ -308,8 +306,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-15T15:33:25+08:00">
-                2017-10-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-19T01:48:11+08:00">
+                2017-10-18
               </time>
             
 
@@ -324,8 +322,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-10-15T15:33:25+08:00">
-                2017-10-15
+              <time title="更新于" itemprop="dateModified" datetime="2017-10-18T17:48:14+08:00">
+                2017-10-18
               </time>
             
           </span>
@@ -343,8 +341,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Elasticsearch/" itemprop="url" rel="index">
-                    <span itemprop="name">Elasticsearch</span>
+                  <a href="/categories/hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">hexo</span>
                   </a>
                 </span>
 
@@ -386,16 +384,11 @@
 
       
         <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><ul>
-<li>Elasticsearch5.X Centos7安装过程。</li>
+<li>hexo个人静态博客，源文件及主题备份，以防件丢失。</li>
 </ul>
 <a id="more"></a>
-<h3 id="下载地址：Elasticsearch-5-5-2-tar-gz"><a href="#下载地址：Elasticsearch-5-5-2-tar-gz" class="headerlink" title="下载地址：Elasticsearch-5.5.2.tar.gz"></a>下载地址：<a href="https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.5.2.tar.gz" target="_blank" rel="external">Elasticsearch-5.5.2.tar.gz</a></h3><h3 id="ElasticSearch-安装"><a href="#ElasticSearch-安装" class="headerlink" title="ElasticSearch 安装"></a>ElasticSearch 安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#Elasticsearch默认不推荐使用root用户启动，所以创建用户</span></div><div class="line"><span class="comment">#创建用户elastic </span></div><div class="line">useradd   elastic</div><div class="line"></div><div class="line"><span class="comment">#设置密码 （回车后输入密码）</span></div><div class="line">passwd   elastic</div><div class="line"></div><div class="line"><span class="comment">#切到elastic用户目录下</span></div><div class="line"><span class="built_in">cd</span> /home/elastic</div><div class="line"></div><div class="line"><span class="comment">#下载Elasticsearch安装包</span></div><div class="line">wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.5.2.tar.gz</div><div class="line"></div><div class="line"><span class="comment">#解压安装包</span></div><div class="line">tar -xzvf elasticsearch-5.5.2.tar.gz</div><div class="line"></div><div class="line"><span class="comment">#给elastic用户设置文件读写权限</span></div><div class="line">chown -R elastic:elastic  elasticsearch-5.5.2</div><div class="line"></div><div class="line"><span class="comment">#切换到elastic用户，并启动elasticsearch</span></div><div class="line">su elastic</div><div class="line">sh elasticsearch-5.5.2/bin/elasticsearch</div></pre></td></tr></table></figure>
-<h3 id="启动测试"><a href="#启动测试" class="headerlink" title="启动测试"></a>启动测试</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">执行命令  curl http://localhost:9200/</div><div class="line"><span class="comment">#得到以下结果则启动成功</span></div><div class="line">&#123;</div><div class="line">  <span class="string">"name"</span> : <span class="string">"_EArkv7"</span>,</div><div class="line">  <span class="string">"cluster_name"</span> : <span class="string">"elasticsearch"</span>,</div><div class="line">  <span class="string">"cluster_uuid"</span> : <span class="string">"q9gTAC0gTduDqxiV9JgE_g"</span>,</div><div class="line">  <span class="string">"version"</span> : &#123;</div><div class="line">    <span class="string">"number"</span> : <span class="string">"5.5.2"</span>,</div><div class="line">    <span class="string">"build_hash"</span> : <span class="string">"b2f0c09"</span>,</div><div class="line">    <span class="string">"build_date"</span> : <span class="string">"2017-08-14T12:33:14.154Z"</span>,</div><div class="line">    <span class="string">"build_snapshot"</span> : <span class="literal">false</span>,</div><div class="line">    <span class="string">"lucene_version"</span> : <span class="string">"6.6.0"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="string">"tagline"</span> : <span class="string">"You Know, for Search"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="主机不能访问虚拟机9200端口"><a href="#主机不能访问虚拟机9200端口" class="headerlink" title="主机不能访问虚拟机9200端口"></a>主机不能访问虚拟机9200端口</h3><p>编辑Elasticsearch    <code>config/elasticsearch.yml</code> 配置文件。 如下图所示</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/7048598-f69c60a0d32f5aaa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600" alt="image.png"></p>
-<h3 id="启动过程可能遇到的错误"><a href="#启动过程可能遇到的错误" class="headerlink" title="启动过程可能遇到的错误"></a>启动过程可能遇到的错误</h3><figure class="highlight subunit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">ERROR: </span>bootstrap checks failed</div><div class="line">1.max file descriptors [4096] for elasticsearch process likely too low, increase to at least [65536]</div><div class="line">2.max virtual memory areas vm.max_map_count [65530] likely too low, increase to at least [262144]</div></pre></td></tr></table></figure>
-<h4 id="1-问题一解决方法"><a href="#1-问题一解决方法" class="headerlink" title="1.问题一解决方法"></a>1.问题一解决方法</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#切换到root用户，编辑limits.conf </span></div><div class="line">vi /etc/security/limits.conf</div><div class="line"></div><div class="line"><span class="comment">#添加如下内容</span></div><div class="line">* hard nofile 65536</div><div class="line">* soft nofile 65536</div></pre></td></tr></table></figure>
-<h4 id="2-问题二解决方法"><a href="#2-问题二解决方法" class="headerlink" title="2.问题二解决方法"></a>2.问题二解决方法</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#切换到root用户修改配置sysctl.conf</span></div><div class="line">vi /etc/sysctl.conf</div><div class="line"></div><div class="line"><span class="comment">#添加下面配置：</span></div><div class="line">vm.max_map_count=655360</div><div class="line"></div><div class="line"><span class="comment">#并执行命令：</span></div><div class="line">sysctl -p</div><div class="line"></div><div class="line"><span class="comment">#重启Elasticsearch</span></div></pre></td></tr></table></figure>
+<h3 id="hexo-源文件备份"><a href="#hexo-源文件备份" class="headerlink" title="hexo 源文件备份"></a>hexo 源文件备份</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">1.进入到本地hexo博客文件夹所在位置</div><div class="line"><span class="built_in">cd</span> /Library/Application/hexo</div><div class="line"></div><div class="line">2.将当前位置初始化为代码仓库</div><div class="line">git init</div><div class="line"></div><div class="line">3.设置远程仓库地址</div><div class="line">git remote add origin https://git.coding.net/ghycn/ghycn.coding.com.git</div><div class="line"></div><div class="line">4.创建hexo分支，用来存放源码</div><div class="line">git checkout -b hexo</div><div class="line"></div><div class="line">5.git 文件添加</div><div class="line">git add .</div><div class="line"></div><div class="line">6.git 提交</div><div class="line">git commit -m <span class="string">"init"</span></div><div class="line"></div><div class="line">7.push到hexo分支</div><div class="line">git push origin hexo</div></pre></td></tr></table></figure>
+<!-- more -->
 
       
     </div>
@@ -413,9 +406,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Elasticsearch/" rel="tag"># Elasticsearch</a>
-          
-            <a href="/tags/linux/" rel="tag"># linux</a>
+            <a href="/tags/hexo备份/" rel="tag"># hexo备份</a>
           
         </div>
       
@@ -428,8 +419,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/15/git/" rel="next" title="GIT 常用命令">
-                <i class="fa fa-chevron-left"></i> GIT 常用命令
+              <a href="/2017/10/19/idea-register/" rel="next" title="IntelliJ IDEA完美激活">
+                <i class="fa fa-chevron-left"></i> IntelliJ IDEA完美激活
               </a>
             
           </div>
@@ -438,8 +429,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/15/jsplumb/" rel="prev" title="jsPlumb 基本概念">
-                jsPlumb 基本概念 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/19/git/" rel="prev" title="GIT 常用命令">
+                GIT 常用命令 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -593,7 +584,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下载地址：Elasticsearch-5-5-2-tar-gz"><span class="nav-number">2.</span> <span class="nav-text">下载地址：Elasticsearch-5.5.2.tar.gz</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ElasticSearch-安装"><span class="nav-number">3.</span> <span class="nav-text">ElasticSearch 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动测试"><span class="nav-number">4.</span> <span class="nav-text">启动测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主机不能访问虚拟机9200端口"><span class="nav-number">5.</span> <span class="nav-text">主机不能访问虚拟机9200端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动过程可能遇到的错误"><span class="nav-number">6.</span> <span class="nav-text">启动过程可能遇到的错误</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-问题一解决方法"><span class="nav-number">6.1.</span> <span class="nav-text">1.问题一解决方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-问题二解决方法"><span class="nav-number">6.2.</span> <span class="nav-text">2.问题二解决方法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo-源文件备份"><span class="nav-number">2.</span> <span class="nav-text">hexo 源文件备份</span></a></li></ol></div>
             
 
           </div>
@@ -735,13 +726,6 @@
 
   
   
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
-
-
 
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>

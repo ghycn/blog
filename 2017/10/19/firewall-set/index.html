@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -53,7 +53,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="hexo备份," />
+  <meta name="keywords" content="linux," />
 
 
 
@@ -62,25 +62,25 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+  <link rel="shortcut icon" type="image/x-icon" href="/coding.ico?v=5.1.2" />
 
 
 
 
 
 
-<meta name="description" content="摘要 hexo个人静态博客，源文件及主题备份，以防件丢失。">
-<meta name="keywords" content="hexo备份">
+<meta name="description" content="摘要 CentOS7 CentOS6防火墙设置相关命令。">
+<meta name="keywords" content="linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo 源文件备份">
-<meta property="og:url" content="http://www.gaohy.top/2017/10/15/hexo-source-backup/index.html">
+<meta property="og:title" content="Linux防火墙设置">
+<meta property="og:url" content="http://www.gaohy.top/2017/10/19/firewall-set/index.html">
 <meta property="og:site_name" content="Mr、Gao个人小屋">
-<meta property="og:description" content="摘要 hexo个人静态博客，源文件及主题备份，以防件丢失。">
+<meta property="og:description" content="摘要 CentOS7 CentOS6防火墙设置相关命令。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-15T07:33:25.784Z">
+<meta property="og:updated_time" content="2017-10-18T09:48:36.211Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hexo 源文件备份">
-<meta name="twitter:description" content="摘要 hexo个人静态博客，源文件及主题备份，以防件丢失。">
+<meta name="twitter:title" content="Linux防火墙设置">
+<meta name="twitter:description" content="摘要 CentOS7 CentOS6防火墙设置相关命令。">
 
 
 
@@ -88,7 +88,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
+    scheme: 'Mist',
     version: '5.1.2',
     sidebar: {"position":"left","display":"hide","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -110,13 +110,13 @@
 
 
 
-  <link rel="canonical" href="http://www.gaohy.top/2017/10/15/hexo-source-backup/"/>
+  <link rel="canonical" href="http://www.gaohy.top/2017/10/19/firewall-set/"/>
 
 
 
 
 
-  <title>hexo 源文件备份 | Mr、Gao个人小屋</title>
+  <title>Linux防火墙设置 | Mr、Gao个人小屋</title>
   
 
 
@@ -277,7 +277,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.gaohy.top/2017/10/15/hexo-source-backup/">
+    <link itemprop="mainEntityOfPage" href="http://www.gaohy.top/2017/10/19/firewall-set/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr、Gao">
@@ -294,7 +294,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">hexo 源文件备份</h1>
+          <h1 class="post-title" itemprop="name headline">Linux防火墙设置</h1>
         
 
         <div class="post-meta">
@@ -306,8 +306,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-15T15:33:25+08:00">
-                2017-10-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-19T01:48:34+08:00">
+                2017-10-18
               </time>
             
 
@@ -322,8 +322,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-10-15T15:33:25+08:00">
-                2017-10-15
+              <time title="更新于" itemprop="dateModified" datetime="2017-10-18T17:48:36+08:00">
+                2017-10-18
               </time>
             
           </span>
@@ -341,8 +341,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">hexo</span>
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
                   </a>
                 </span>
 
@@ -384,11 +384,12 @@
 
       
         <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><ul>
-<li>hexo个人静态博客，源文件及主题备份，以防件丢失。</li>
+<li>CentOS7 CentOS6防火墙设置相关命令。</li>
 </ul>
 <a id="more"></a>
-<h3 id="hexo-源文件备份"><a href="#hexo-源文件备份" class="headerlink" title="hexo 源文件备份"></a>hexo 源文件备份</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">1.进入到本地hexo博客文件夹所在位置</div><div class="line"><span class="built_in">cd</span> /Library/Application/hexo</div><div class="line"></div><div class="line">2.将当前位置初始化为代码仓库</div><div class="line">git init</div><div class="line"></div><div class="line">3.设置远程仓库地址</div><div class="line">git remote add origin https://git.coding.net/ghycn/ghycn.coding.com.git</div><div class="line"></div><div class="line">4.创建hexo分支，用来存放源码</div><div class="line">git checkout -b hexo</div><div class="line"></div><div class="line">5.git 文件添加</div><div class="line">git add .</div><div class="line"></div><div class="line">6.git 提交</div><div class="line">git commit -m <span class="string">"init"</span></div><div class="line"></div><div class="line">7.push到hexo分支</div><div class="line">git push origin hexo</div></pre></td></tr></table></figure>
-<!-- more -->
+<p><strong>在CentOS7中，有很多CentOS 6中的常用服务发生了变化</strong><br><strong>其中iptables是其中比较大的一个。防火墙iptables被firewalld取代</strong></p>
+<h3 id="centOS-7关闭防火墙"><a href="#centOS-7关闭防火墙" class="headerlink" title="centOS 7关闭防火墙"></a>centOS 7关闭防火墙</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#查看默认防火墙状态（关闭后显示notrunning，开启后显示running）</span></div><div class="line">firewall-cmd --state         </div><div class="line"></div><div class="line"><span class="comment">#停止firewall</span></div><div class="line">systemctl stop firewalld.service </div><div class="line">       </div><div class="line"><span class="comment">#禁止firewall开机启动</span></div><div class="line">systemctl <span class="built_in">disable</span> firewalld.service</div></pre></td></tr></table></figure>
+<h3 id="centOS-6关闭防火墙"><a href="#centOS-6关闭防火墙" class="headerlink" title="centOS 6关闭防火墙"></a>centOS 6关闭防火墙</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#可以查看到iptables服务的当前状态</span></div><div class="line">service iptables status  </div><div class="line"></div><div class="line"><span class="comment">#关于启动和关闭防火墙的命令:</span></div><div class="line">1) 重启后生效</div><div class="line"></div><div class="line">开启： chkconfig iptables on</div><div class="line"></div><div class="line">关闭： chkconfig iptables off</div><div class="line"></div><div class="line">2) 即时生效，重启后失效</div><div class="line"></div><div class="line">开启： service iptables start</div><div class="line">****</div><div class="line">关闭： service iptables stop</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -406,7 +407,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/hexo备份/" rel="tag"># hexo备份</a>
+            <a href="/tags/linux/" rel="tag"># linux</a>
           
         </div>
       
@@ -419,8 +420,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/15/linux/" rel="next" title="Linux 常用命令">
-                <i class="fa fa-chevron-left"></i> Linux 常用命令
+              <a href="/2017/10/19/git/" rel="next" title="GIT 常用命令">
+                <i class="fa fa-chevron-left"></i> GIT 常用命令
               </a>
             
           </div>
@@ -429,8 +430,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/15/mac-jdk/" rel="prev" title="Mac下多版本JDK配置">
-                Mac下多版本JDK配置 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/19/es-start/" rel="prev" title="Elasticsearch 设置自启动">
+                Elasticsearch 设置自启动 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -584,7 +585,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo-源文件备份"><span class="nav-number">2.</span> <span class="nav-text">hexo 源文件备份</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#centOS-7关闭防火墙"><span class="nav-number">2.</span> <span class="nav-text">centOS 7关闭防火墙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#centOS-6关闭防火墙"><span class="nav-number">3.</span> <span class="nav-text">centOS 6关闭防火墙</span></a></li></ol></div>
             
 
           </div>
@@ -726,13 +727,6 @@
 
   
   
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
-
-
 
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
