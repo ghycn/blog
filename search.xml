@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[jquery+css代替iframe]]></title>
+    <url>%2F2018%2F01%2F05%2F2018-01-04%2F</url>
+    <content type="text"><![CDATA[1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071&lt;!DOCTYPE html&gt;&lt;html lang="en"&gt;&lt;head&gt; &lt;meta charset="UTF-8"&gt; &lt;title&gt;Document&lt;/title&gt;&lt;/head&gt;&lt;script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"&gt;&lt;/script&gt;&lt;style type="text/css"&gt; * &#123; margin: 0; padding: 0; &#125; div &#123; text-align: center; font-size: 30px; &#125; .header, .footer &#123; width: 100%; height: 100px; line-height: 100px; background-color: red; &#125; .leftcontent &#123; width: 20%; position: absolute; top: 100px; bottom: 0px; background-color: yellow; &#125; .rightcontent&#123; width: 80%; position: absolute; top: 100px; left: 20%; bottom: 0px; background-color: grey; &#125;&lt;/style&gt;&lt;body&gt;&lt;div class="header"&gt;头部&lt;/div&gt;&lt;div class="leftcontent"&gt; &lt;ul class="nav navbar-nav" id="indexMenu"&gt; &lt;li&gt;&lt;a target="right/1.html"&gt;首页&lt;/a&gt;&lt;/li&gt; &lt;li&gt;&lt;a target="right/2.html"&gt;新闻&lt;/a&gt;&lt;/li&gt; &lt;li&gt;&lt;a target="right/3.html"&gt;留言&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt;&lt;/div&gt;&lt;div id="iframeContent" class="rightcontent"&gt;&lt;/div&gt;&lt;/body&gt;&lt;script&gt; $(function()&#123; $.get("right/1.html",function(data)&#123; $("#iframeContent").html(data);//初始化加载界面 &#125;); $('#indexMenu li').click(function()&#123;//点击li加载界面 var current = $(this), target = current.find('a').attr('target'); // 找到链接a中的targer的值 $.get(target,function(data)&#123; $("#iframeContent").html(data); &#125;); &#125;); &#125;);&lt;/script&gt;&lt;/html&gt;]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>代替iframe</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Docker 常用命令]]></title>
     <url>%2F2017%2F10%2F19%2Fdocker%2F</url>
     <content type="text"><![CDATA[摘要 Docker 常用命令简单记录。 Docker容器命令12345678910111213docker images 查看所有镜像列表docker ps 查看运行的容器docker ps -a 查看所有容器docker ps -l 查看上一个执行的容器docker start ID docker stop IDdocker exec -t -i 容器名称 /bin/bash ps:进入到容器内部命令docker logs 容器名称 查看容器日志 Docker主机文件复制到容器中12345docker inspect -f '&#123;&#123;.Id&#125;&#125;' 容器id或名称 ps:获取整个容器完整ID命令docker cp /root/software/demo-web.war 7726a9603a775f4b82e2c271c48d98505bcb2de3b4c53761b740485cc3c7db4a:/root/software/demo-web.warps:7726a..为容器的完整ID]]></content>
