@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Centos7安装hadoop2.7.5（单节点）]]></title>
+    <url>%2F2018%2F01%2F11%2Fhadoop%2F</url>
+    <content type="text"><![CDATA[1.安装Java JDK12345678910111213#编辑配置文件vim /etc/profile #添加以下内容export JAVA_HOME=/usr/local/java/jdk1.7.0_79export PATH=$JAVA_HOME/bin:$PATHexport CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar#使环境变量生效source /etc/profile#查看环境变量配置是否成功java -version 2.创建一个新用户12345#新建用户useradd hadoop#设置密码passwd hadoop 3.下载Hadoophadoop-2.7.5.tar.gz 123456789#解压tar包tar xfz hadoop-2.7.5.tar.gz#移动到/opt目录mkdir /opt/hadoopmv hadoop-2.7.5/* /opt/hadoop#更改目录所有者为hadoopchown -R hadoop:hadoop /opt/hadoop/ 4.配置ssh免密登录123456789101112131415*#登录hadoop用户su - hadoop#首先，生成SSH秘钥，生成的私钥文件默认位置是~/.ssh/id_rsa.pubssh-keygen -t rsa #将私钥写入~/.ssh/authorized_keyscat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys#尝试使用ssh登陆localhost，应该不再需要输入密码ssh localhost#非root用户设置本地ssh免密登录失败，需要给authorized_keys文件授权chmod 710 ~/.ssh/authorized_keysssh localhost 5.配置hadoop 添加环境变量，编辑/etc/profile文件 1vim /etc/profile 配置hadoop环境变量 12345678export HADOOP_HOME=/opt/hadoopexport HADOOP_INSTALL=$HADOOP_HOMEexport HADOOP_MAPRED_HOME=$HADOOP_HOMEexport HADOOP_COMMON_HOME=$HADOOP_HOMEexport HADOOP_HDFS_HOME=$HADOOP_HOMEexport YARN_HOME=$HADOOP_HOMEexport HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/nativeexport PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin 使环境变量生效 1source /etc/profile 编辑hadoop-env.sh文件 12cd $HADOOP_HOME/etc/hadoopvim hadoop-env.sh 将export JAVA_HOME=${JAVA_HOME}改为如下 1export JAVA_HOME=/usr/local/java/jdk1.7.0_79 编辑core-site.xml文件，configuration中的内容 123456&lt;configuration&gt;&lt;property&gt; &lt;name&gt;fs.default.name&lt;/name&gt; &lt;value&gt;hdfs://localhost:9000&lt;/value&gt;&lt;/property&gt;&lt;/configuration&gt; 编辑hdfs-site.xml文件，configuration中的内容 12345678910111213141516&lt;configuration&gt;&lt;property&gt; &lt;name&gt;dfs.replication&lt;/name&gt; &lt;value&gt;1&lt;/value&gt;&lt;/property&gt; &lt;property&gt; &lt;name&gt;dfs.name.dir&lt;/name&gt; &lt;value&gt;file:///opt/hadoop/hadoopdata/namenode&lt;/value&gt;&lt;/property&gt; &lt;property&gt; &lt;name&gt;dfs.data.dir&lt;/name&gt; &lt;value&gt;file:///opt/hadoop/hadoopdata/datanode&lt;/value&gt;&lt;/property&gt;&lt;/configuration&gt; 创建目录 123mkdir /opt/hadoop/hadoopdatamkdir /opt/hadoop/hadoopdata/namenodemkdir /opt/hadoop/hadoopdata/datanode 创建mapred-site.xml文件 1cp mapred-site.xml.template mapred-site.xml 编辑mapred-site.xml文件，configuration中的内容 123456&lt;configuration&gt; &lt;property&gt; &lt;name&gt;mapreduce.framework.name&lt;/name&gt; &lt;value&gt;yarn&lt;/value&gt; &lt;/property&gt;&lt;/configuration&gt; 编辑yarn-site.xml文件，configuration中的内容 1234567&lt;configuration&gt;&lt;!-- Site specific YARN configuration properties --&gt;&lt;property&gt; &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt; &lt;value&gt;mapreduce_shuffle&lt;/value&gt;&lt;/property&gt; &lt;/configuration&gt; 初始化HDFS文件系统 1hdfs namenode -format 6.启动服务1234567891011#进入sbin文件夹cd /opt/hadoop/sbin#启动Hadoop服务start-dfs.sh#启动yarnstart-yarn.sh#查看服务运行状态jps 7.测试访问主机端口50070或8088查看]]></content>
+      <categories>
+        <category>hadoop</category>
+      </categories>
+      <tags>
+        <tag>hadoop</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[jquery+css代替iframe]]></title>
     <url>%2F2018%2F01%2F05%2F2018-01-04%2F</url>
     <content type="text"><![CDATA[jquery+css代替iframe 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071&lt;!DOCTYPE html&gt;&lt;html lang="en"&gt;&lt;head&gt; &lt;meta charset="UTF-8"&gt; &lt;title&gt;Document&lt;/title&gt;&lt;/head&gt;&lt;script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"&gt;&lt;/script&gt;&lt;style type="text/css"&gt; * &#123; margin: 0; padding: 0; &#125; div &#123; text-align: center; font-size: 30px; &#125; .header, .footer &#123; width: 100%; height: 100px; line-height: 100px; background-color: red; &#125; .leftcontent &#123; width: 20%; position: absolute; top: 100px; bottom: 0px; background-color: yellow; &#125; .rightcontent&#123; width: 80%; position: absolute; top: 100px; left: 20%; bottom: 0px; background-color: grey; &#125;&lt;/style&gt;&lt;body&gt;&lt;div class="header"&gt;头部&lt;/div&gt;&lt;div class="leftcontent"&gt; &lt;ul class="nav navbar-nav" id="indexMenu"&gt; &lt;li&gt;&lt;a target="right/1.html"&gt;首页&lt;/a&gt;&lt;/li&gt; &lt;li&gt;&lt;a target="right/2.html"&gt;新闻&lt;/a&gt;&lt;/li&gt; &lt;li&gt;&lt;a target="right/3.html"&gt;留言&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt;&lt;/div&gt;&lt;div id="iframeContent" class="rightcontent"&gt;&lt;/div&gt;&lt;/body&gt;&lt;script&gt; $(function()&#123; $.get("right/1.html",function(data)&#123; $("#iframeContent").html(data);//初始化加载界面 &#125;); $('#indexMenu li').click(function()&#123;//点击li加载界面 var current = $(this), target = current.find('a').attr('target'); // 找到链接a中的targer的值 $.get(target,function(data)&#123; $("#iframeContent").html(data); &#125;); &#125;); &#125;);&lt;/script&gt;&lt;/html&gt;]]></content>
@@ -30,8 +41,8 @@
         <category>Elasticsearch</category>
       </categories>
       <tags>
-        <tag>linux</tag>
         <tag>Elasticsearch</tag>
+        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -42,8 +53,8 @@
         <category>Elasticsearch</category>
       </categories>
       <tags>
-        <tag>linux</tag>
         <tag>Elasticsearch</tag>
+        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
