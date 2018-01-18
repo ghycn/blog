@@ -77,13 +77,13 @@
 <meta property="og:site_name" content="Mr、Gao个人小屋">
 <meta property="og:description" content="环境  123456789hdp21 192.168.95.21hdp22 192.168.95.22hdp23 192.168.95.23hdp24 192.168.95.24hdp25 192.168.95.25时间网络同步、关闭selinux创建用户hadoop，密码fujghadoop 用户免密登录我准备把所有的文件都放在home目录下  Hadoop2.7.3  12345192.16">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://www.gaohy.top/images/%E5%9B%BE%E7%89%87%201.png">
-<meta property="og:image" content="http://www.gaohy.top/images/2.png">
-<meta property="og:updated_time" content="2018-01-18T05:40:37.474Z">
+<meta property="og:image" content="http://www.gaohy.top/image/%E5%9B%BE%E7%89%87%201-1.png">
+<meta property="og:image" content="http://www.gaohy.top/image/2.png">
+<meta property="og:updated_time" content="2018-01-18T05:57:50.428Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hadoop集群双NameNode">
 <meta name="twitter:description" content="环境  123456789hdp21 192.168.95.21hdp22 192.168.95.22hdp23 192.168.95.23hdp24 192.168.95.24hdp25 192.168.95.25时间网络同步、关闭selinux创建用户hadoop，密码fujghadoop 用户免密登录我准备把所有的文件都放在home目录下  Hadoop2.7.3  12345192.16">
-<meta name="twitter:image" content="http://www.gaohy.top/images/%E5%9B%BE%E7%89%87%201.png">
+<meta name="twitter:image" content="http://www.gaohy.top/image/%E5%9B%BE%E7%89%87%201-1.png">
 
 
 
@@ -325,7 +325,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-18T13:40:37+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-18T13:57:50+08:00">
                 2018-01-18
               </time>
             
@@ -411,19 +411,20 @@
 <h2 id="4-6-启动DataNode"><a href="#4-6-启动DataNode" class="headerlink" title="4.6  启动DataNode"></a>4.6  启动DataNode</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">在所有的DataNode上执行（启动datanode）：</div><div class="line">hadoop-daemon<span class="selector-class">.sh</span> start datanode</div></pre></td></tr></table></figure>
 <h1 id="5-启停"><a href="#5-启停" class="headerlink" title="5  启停"></a>5  启停</h1><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">启动</div><div class="line">start-dfs.<span class="keyword">sh</span></div><div class="line">停止</div><div class="line"><span class="keyword">stop</span>-dfs.<span class="keyword">sh</span></div></pre></td></tr></table></figure>
 <h1 id="6-监控等"><a href="#6-监控等" class="headerlink" title="6  监控等"></a>6  监控等</h1><ul>
-<li><p>hdp21主NameNode</p>
+<li>hdp21主NameNode</li>
+</ul>
 <figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Hdfs浏览器访问地址：</div><div class="line"><span class="symbol">http:</span><span class="comment">//hdp21:50070</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>hdp22备NameNode</p>
+<ul>
+<li>hdp22备NameNode</li>
+</ul>
 <figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Hdfs浏览器访问地址：</div><div class="line"><span class="symbol">http:</span><span class="comment">//hdp22:50070</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>测试NameNode双机<br>杀掉主NameNode，即hdp21上的NameNode进程，浏览器查看hdp22的状态</p>
-</li>
+<ul>
+<li>测试NameNode双机<br>杀掉主NameNode，即hdp21上的NameNode进程，浏览器查看hdp22的状态</li>
 </ul>
 <p>1.在hdp21上jps，找到NameNode进程id并杀掉</p>
-<p><img src="/images/%E5%9B%BE%E7%89%87%201.png" alt="图片 1"></p>
+<p> <img src="/image/%E5%9B%BE%E7%89%87%201-1.png" alt="图片 1"></p>
 <p>2.浏览器查看备NameNode状态</p>
-<p><img src="/images/2.png" alt="2"></p>
+<p><img src="/image/2.png" alt="2"></p>
 <p>备用NameNode已经启动了！！！</p>
 
       
